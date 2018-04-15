@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 .46rem;
+  box-sizing: border-box;
+  width: 100%;
+  height: .76rem;
+  background: #fff;
+}
+.header .logo {
+  font-size: .44rem;
+  color: #009688;
+}
+.header .logo + div {
+  display: flex;
+  align-items: center;
+}
+.header .logo + div .download {
+  padding-right: .2rem;
+  border-right: .01rem solid #ccc;
+  font-size: .28rem;
+}
+.header .logo + div .iconfont {
+  padding-left: .2rem;
+}
+
+.home .mars-carousel {
+  width: 100%;
+  height: 3.2rem !important;
+  overflow: hidden;
+}
+.home .mars-carousel a {
+  height: inherit;
+}
+.home .mars-carousel img {
+  height: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  display: block;
+}
+
+/*# sourceMappingURL=index.css.map */
