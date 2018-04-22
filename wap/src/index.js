@@ -1,14 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './App';
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import {Provider} from 'react-redux'
+
 
 import './css/iconfont.css';
 import './css/index.css';
 import Home from './js/component/pages/home';
+import Product from './js/component/pages/product';
+import Account from './js/component/pages/account';
+
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
     <Home/>, document.getElementById('root')
 );
+
+export class Root extends React.Component{
+    render(){
+        return(
+            <Router>
+                <Switch>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/product" component={Product}/>
+                    <Route path="/account" component={Account}/>
+                </Switch>
+            </Router>
+        )
+    }
+}
+
+
+const root = document.getElementById('root');
+
+ReactDOM.render(
+    <Provider>
+        <Root/>
+    </Provider>,root
+);
+
 registerServiceWorker();

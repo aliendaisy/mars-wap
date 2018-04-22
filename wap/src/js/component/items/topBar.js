@@ -1,0 +1,17 @@
+import React,{Component} from 'react';
+
+class TopBar extends Component{
+    render() {
+        return(
+            <div className="topBar">
+                <p className="caption">Marstail</p>
+                <div>
+                    <span className="iconfont icon-left"></span>
+                    <p className={this.props.isShow ? "show" : "hide"}>Save</p>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default TopBar;

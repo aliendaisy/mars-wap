@@ -1,3 +1,35 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+a {
+  display: block; }
+
+p {
+  margin: 0;
+  padding: 0; }
+
+ul, li {
+  list-style: none; }
+
+body {
+  background: #f4f4f4; }
+
+input {
+  border: none; }
+
+.whiteBg {
+  background: #fff; }
+
+.slider-decorator-0 {
+  height: .8rem; }
+
+.am-carousel-wrap {
+  height: .8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -6,43 +38,193 @@
   box-sizing: border-box;
   width: 100%;
   height: .76rem;
-  background: #fff;
-}
+  background: #fff; }
 .header .logo {
   font-size: .44rem;
-  color: #009688;
-}
+  color: #009688; }
 .header .logo + div {
   display: flex;
-  align-items: center;
-}
+  align-items: center; }
 .header .logo + div .download {
   padding-right: .2rem;
   border-right: .01rem solid #ccc;
-  font-size: .28rem;
-}
+  font-size: .28rem; }
 .header .logo + div .iconfont {
-  padding-left: .2rem;
-}
+  padding-left: .2rem; }
+
+.detail-card .img-container {
+  height: 3.2rem;
+  min-height: 3.2rem;
+  overflow: hidden; }
+.detail-card .info, .detail-card .order {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 1.4rem;
+  padding: 0 .3rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ebebeb;
+  background: #fff; }
+.detail-card .info .top, .detail-card .order .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+.detail-card .info .top p:nth-of-type(1), .detail-card .order .top p:nth-of-type(1) {
+  font-size: .36rem; }
+.detail-card .info .top div, .detail-card .order .top div {
+  display: flex;
+  align-items: center; }
+.detail-card .info .top div .heart, .detail-card .order .top div .heart {
+  display: inline-block;
+  padding: 0 .3rem;
+  font-size: .24rem;
+  color: #878787; }
+.detail-card .info .bottom, .detail-card .order .bottom {
+  color: #878787;
+  font-size: .24rem; }
+.detail-card .order {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: .84rem; }
+.detail-card .order .price {
+  font-size: .36rem; }
+.detail-card .order .numChange {
+  width: 2rem;
+  height: .54rem;
+  display: flex;
+  justify-content: space-between; }
+.detail-card .order .numChange input {
+  width: .6rem;
+  height: inherit;
+  font-size: .36rem;
+  text-align: center; }
+.detail-card .order .reserved {
+  width: 1.9rem;
+  height: .54rem;
+  border-radius: .08rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .32rem;
+  color: #fff;
+  background: #009688; }
 
 .home .mars-carousel {
   width: 100%;
-  overflow: hidden;
-}
+  margin-bottom: .1rem;
+  overflow: hidden; }
 .home .mars-carousel a {
-  height: inherit;
-}
+  height: inherit; }
 .home .mars-carousel img {
-  height: inherit;
-}
+  height: inherit; }
+.home .week-list-box, .home .category-list-box {
+  width: 100%;
+  height: 1.36rem;
+  overflow: auto;
+  border-bottom: 1px solid #ebebeb; }
+.home .week-list-box::-webkit-scrollbar, .home .category-list-box::-webkit-scrollbar {
+  display: none; }
+.home .week-list-box .week-list, .home .category-list-box .week-list, .home .category-list-box .category-list {
+  width: 175%;
+  height: 100%;
+  display: flex;
+  overflow-x: hidden; }
+.home .week-list-box .week-list li, .home .category-list-box .week-list li, .home .category-list-box .category-list li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  font-size: .6rem;
+  font-weight: bold;
+  font-family: 'Helvetica';
+  text-align: center; }
+.home .week-list-box .week-list li p:last-child, .home .category-list-box .week-list li p:last-child, .home .category-list-box .category-list li p:last-child {
+  font-size: .44rem; }
+.home .week-list-box .week-list li.active, .home .category-list-box .week-list li.active, .home .category-list-box .category-list li.active {
+  color: #009688; }
+.home .category-list-box {
+  height: .86rem;
+  border: none; }
+.home .category-list-box .category-list {
+  width: 100%; }
+.home .category-list-box .category-list li {
+  border-bottom: .1rem solid #f4f4f4;
+  font-size: .4rem; }
+.home .category-list-box .category-list li.active {
+  border-bottom: .1rem solid #009688; }
 
-* {
-  margin: 0;
-  padding: 0;
-}
+.topBar {
+  position: relative;
+  width: 100%;
+  height: .8rem;
+  border-bottom: 1px solid #efefef;
+  background: #fff; }
+.topBar .caption {
+  line-height: .8rem;
+  text-align: center;
+  font-size: .44rem;
+  color: #009688;
+  font-weight: bold;
+  font-family: 'Helvetica'; }
+.topBar div {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 .4rem;
+  box-sizing: border-box; }
+.topBar div p {
+  font-size: .36rem; }
+.topBar .show {
+  opacity: 1; }
+.topBar .hide {
+  opacity: 0; }
 
-a {
-  display: block;
-}
+.account .label-fat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 1.6rem;
+  padding: 0 .3rem;
+  border-bottom: 1px solid #efefef;
+  box-sizing: border-box;
+  background: #fff;
+  margin-top: .2rem;
+  margin-bottom: .3rem;
+  justify-content: flex-start; }
+.account .label-fat .img-box {
+  width: 1rem;
+  height: 1rem;
+  padding-right: .3rem; }
+.account .label-fat .info, .account .label-fat .detail-card .order, .detail-card .account .label-fat .order {
+  height: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: .28rem; }
+.account .label-fat .info p:nth-of-type(1), .account .label-fat .detail-card .order p:nth-of-type(1), .detail-card .account .label-fat .order p:nth-of-type(1) {
+  color: #009688; }
+.account .label-fat .info p:nth-of-type(2), .account .label-fat .detail-card .order p:nth-of-type(2), .detail-card .account .label-fat .order p:nth-of-type(2) {
+  color: #878787; }
+.account .label-box {
+  margin-bottom: .3rem; }
+.account .label-box .label-thin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 0.8rem;
+  padding: 0 .3rem;
+  border-bottom: 1px solid #efefef;
+  box-sizing: border-box;
+  background: #fff; }
+.account .label-box .label-thin p {
+  font-size: .28rem;
+  color: #878787; }
 
 /*# sourceMappingURL=index.css.map */

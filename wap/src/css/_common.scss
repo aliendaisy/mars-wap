@@ -5,3 +5,41 @@
 a{
   display: block;
 }
+p{
+  margin: 0;
+  padding: 0;
+}
+ul,li{
+  list-style: none;
+}
+body{
+  background: #f4f4f4;
+}
+input{
+  border: none;
+}
+.whiteBg{
+  background: #fff;
+}
+
+.slider-decorator-0{
+  height: .8rem;
+}
+.am-carousel-wrap{
+  height: .8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin label($height) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: $height;
+  padding: 0 .3rem;
+  border-bottom: 1px solid #efefef;
+  box-sizing: border-box;
+  background: #fff;
+}

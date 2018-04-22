@@ -1,0 +1,37 @@
+@import "topBar";
+.account{
+  .label-fat{
+    @include label(1.6rem);
+    margin-top: .2rem;
+    margin-bottom: .3rem;
+    justify-content: flex-start;
+    .img-box{
+      width: 1rem;
+      height: 1rem;
+      padding-right: .3rem;
+    }
+    .info{
+      height: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      font-size: .28rem;
+      p:nth-of-type(1){
+        color: #009688;
+      }
+      p:nth-of-type(2){
+        color: #878787;
+      }
+    }
+  }
+  .label-box{
+    margin-bottom: .3rem;
+    .label-thin{
+      p{
+        font-size: .28rem;
+        color: #878787;
+      }
+      @include label(.8rem);
+    }
+  }
+}
