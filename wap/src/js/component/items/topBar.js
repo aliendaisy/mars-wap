@@ -7,7 +7,7 @@ class TopBar extends Component{
                 <p className="caption">Marstail</p>
                 <div>
                     <span className="iconfont icon-left"></span>
-                    <p className={this.props.isShow ? "show" : "hide"}>Save</p>
+                    <p className={this.props.isShow ? "show" : "hide"} onClick={this.props.onClick}>Save</p>
                 </div>
             </div>
         )

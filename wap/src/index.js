@@ -9,6 +9,7 @@ import './css/index.css';
 import Home from './js/component/pages/home';
 import Product from './js/component/pages/product';
 import Account from './js/component/pages/account';
+import Profile from './js/component/pages/profile';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -24,6 +25,7 @@ export class Root extends React.Component{
                     <Route path="/" exact component={Home}/>
                     <Route path="/product" component={Product}/>
                     <Route path="/account" component={Account}/>
+                    <Route path="/profile" component={Profile}/>
                 </Switch>
             </Router>
         )

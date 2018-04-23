@@ -1,4 +1,5 @@
 @import "topBar";
+
 .account{
   .label-fat{
     @include label(1.6rem);
@@ -35,3 +36,4 @@
     }
   }
 }
+

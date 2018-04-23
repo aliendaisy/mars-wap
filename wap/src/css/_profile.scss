@@ -1,0 +1,53 @@
+.profile{
+  overflow: hidden;
+  p{
+    font-size: .36rem;
+    color: #878787;
+  }
+  .label-fat{
+    @include label(1.6rem);
+    margin-top: .2rem;
+    .img-box{
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+  .label-thin{
+    @include label(1rem);
+    .signature{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 50%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.edit-info{
+  height: calc(100% - .8rem);
+  background: #fff;
+  .input-box{
+    width: 100%;
+    height: 1rem;
+    input{
+      display: block;
+      width: 6.9rem;
+      height: 100%;
+      margin: 0 .3rem;
+      border: none;
+      border-bottom: 2px solid #009688;
+      font-size: .36rem;
+      color: #878787;
+      outline: none;
+    }
+  }
+  p{
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    padding: 0 .3rem;
+    box-sizing: border-box;
+  }
+}
