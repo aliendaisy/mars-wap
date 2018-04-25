@@ -10,6 +10,8 @@ import Home from './js/component/pages/home';
 import Product from './js/component/pages/product';
 import Account from './js/component/pages/account';
 import Profile from './js/component/pages/profile';
+import Sign from './js/component/pages/sign';
+import Download from './js/component/pages/download';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -26,6 +28,8 @@ export class Root extends React.Component{
                     <Route path="/product" component={Product}/>
                     <Route path="/account" component={Account}/>
                     <Route path="/profile" component={Profile}/>
+                    <Route path="/sign" component={Sign}/>
+                    <Route path="/download" component={Download}/>
                 </Switch>
             </Router>
         )

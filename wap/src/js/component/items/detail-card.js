@@ -21,7 +21,7 @@ class DetailCard extends Component{
 
         return(
             <div className="detail-card">
-                <div class="img-container">
+                <div className="img-container">
                     <img src={imgUrl} alt=""/>
                 </div>
                 <div className="info">
@@ -29,7 +29,7 @@ class DetailCard extends Component{
                         <p>{name}</p>
                         <div>
                             <span className={"iconfont " + this.state.class} onClick={this.interest.bind(this)}></span>
-                            <p class="heart">{heartNum}</p>
+                            <p className="heart">{heartNum}</p>
                             <span className="iconfont icon-share"></span>
                         </div>
                     </div>
@@ -43,7 +43,7 @@ class DetailCard extends Component{
                     <NumChange
                         handleChange={this.handleChange.bind(this)}
                     />
-                    <div class="reserved">Reserved</div>
+                    <div className="reserved">Reserved</div>
                 </div>
             </div>
         )

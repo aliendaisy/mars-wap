@@ -291,4 +291,71 @@ input {
   padding: 0 .3rem;
   box-sizing: border-box; }
 
+.sign {
+  padding-top: 1.68rem; }
+.sign img.rounded {
+  display: block;
+  width: 2.16rem;
+  height: 2.16rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid #878787; }
+.sign .commit-area {
+  padding-top: .54rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+.sign .commit-area input, .sign .commit-area .commit-btn {
+  width: 3.6rem;
+  height: .54rem;
+  line-height: .54rem;
+  margin-bottom: .3rem;
+  border-radius: .15rem;
+  text-align: center; }
+.sign .commit-area input {
+  font-size: .28rem;
+  color: #878787;
+  border: 1px solid #878787; }
+.sign .commit-area .commit-btn {
+  background: #009688;
+  font-size: .32rem;
+  color: #fff; }
+.sign .commit-area .service {
+  font-size: .24rem; }
+.sign .commit-area .service span {
+  color: #878787; }
+
+.download {
+  width: 60%;
+  margin: 0 auto; }
+.download > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+.download h3 {
+  padding-top: 1.4rem;
+  font-size: .72rem;
+  color: #009688;
+  font-family: 'Helvetica'; }
+.download p {
+  padding-top: .4rem;
+  text-align: center;
+  font-size: .44rem;
+  color: #4a4a4a; }
+.download .btn {
+  width: 3.6rem;
+  height: .54rem;
+  line-height: .54rem;
+  margin-top: 1.2rem;
+  border: 1px solid #4a4a4a;
+  border-radius: .15rem;
+  text-align: center;
+  background: #fff;
+  font-size: .32rem;
+  color: #4a4a4a; }
+.download .loading {
+  padding-top: 1.64rem;
+  width: 2.4rem;
+  height: 2.4rem; }
+
 /*# sourceMappingURL=index.css.map */

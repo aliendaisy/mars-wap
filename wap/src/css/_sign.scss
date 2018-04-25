@@ -1,0 +1,41 @@
+.sign{
+  padding-top: 1.68rem;
+  img.rounded{
+    display: block;
+    width: 2.16rem;
+    height: 2.16rem;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid #878787;
+  }
+  .commit-area{
+    padding-top: .54rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input,.commit-btn{
+      width: 3.6rem;
+      height: .54rem;
+      line-height: .54rem;
+      margin-bottom: .3rem;
+      border-radius: .15rem;
+      text-align: center;
+    }
+    input{
+      font-size: .28rem;
+      color: #878787;
+      border: 1px solid #878787;
+    }
+    .commit-btn{
+      background: #009688;
+      font-size: .32rem;
+      color: #fff;
+    }
+    .service{
+      font-size: .24rem;
+      span{
+        color: #878787;
+      }
+    }
+  }
+}
