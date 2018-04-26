@@ -6,15 +6,19 @@ class DetailCard extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            class: 'icon-heart'
+            isInterest: false,
+            isReserved: false
         }
 
     }
     handleChange(e) {
         console.log(e) //e为input框里的值
     }
-    interest() {
-        this.setState({class: 'icon-full'});
+    interestToggle() {
+        this.setState({isInterest: !this.state.isInterest});
+    }
+    reserveToggle() {
+        this.setState({isReserved: !this.state.isReserved});
     }
     render() {
         let {imgUrl,name,heartNum,addr,time,price} = this.props;
@@ -28,9 +32,13 @@ class DetailCard extends Component{
                     <div className="top">
                         <p>{name}</p>
                         <div>
-                            <span className={"iconfont " + this.state.class} onClick={this.interest.bind(this)}></span>
+                            <span
+                                className={this.state.isInterest ? "iconfont icon-full" : "iconfont icon-heart"}
+                                onClick={this.interestToggle.bind(this)}>
+                            </span>
                             <p className="heart">{heartNum}</p>
-                            <span className="iconfont icon-share"></span>
+                            <span className="iconfont icon-share">
+                            </span>
                         </div>
                     </div>
                     <div className="bottom">
@@ -43,7 +51,10 @@ class DetailCard extends Component{
                     <NumChange
                         handleChange={this.handleChange.bind(this)}
                     />
-                    <div className="reserved">Reserved</div>
+                    <div
+                        className={this.state.isReserved ? "reserve-btn reserved" : "reserve-btn reserve"}
+                        onClick={this.reserveToggle.bind(this)}
+                    >Reserved</div>
                 </div>
             </div>
         )

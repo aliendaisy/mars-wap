@@ -57,7 +57,7 @@
         text-align: center;
       }
     }
-    .reserved{
+    .reserve-btn{
       width: 1.9rem;
       height: .54rem;
       border-radius: .08rem;
@@ -65,8 +65,16 @@
       align-items: center;
       justify-content: center;
       font-size: .32rem;
+      box-sizing: border-box;
+    }
+    .reserved{
       color: #fff;
       background: #009688;
+    }
+    .reserve{
+      border: 1px solid #009688;
+      color: #009688;
+      background: #fff;
     }
   }
 }

@@ -2,25 +2,34 @@ import React,{Component} from 'react';
 
 
 class NumChange extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: 1
+        }
+    }
     minus() {
         if(this.refs.num.value == 1) {
             return;
         }
-        this.refs.num.value = parseInt(this.refs.num.value) - 1;
-        this.props.handleChange(this.refs.num.value);
+        this.setState({
+            value: this.state.value - 1
+        });
     }
     plus() {
-        this.refs.num.value = parseInt(this.refs.num.value) + 1;
-        this.props.handleChange(this.refs.num.value);
+        this.setState({
+            value: this.state.value + 1
+        });
     }
     render() {
+        this.props.handleChange(this.state.value);
         return(
             <div className="numChange">
                 <span className="iconfont icon-minus" onClick={this.minus.bind(this)}/>
                 <input
                     type="number"
                     ref="num"
-                    value={1}
+                    value={this.state.value}
                     disabled
                     readOnly
                 />

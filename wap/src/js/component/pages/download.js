@@ -1,9 +1,12 @@
 import React,{Component} from 'react';
 
 class Download extends Component{
+    componentDidMount() {
+        document.body.style.background = '#fff';
+    }
     render() {
         return(
-            <div className="download">
+            <div className="load">
                 <div>
                     <h3>Marstail</h3>
                     <p>Stay connected in your community!</p>

@@ -102,7 +102,7 @@ input {
   height: inherit;
   font-size: .36rem;
   text-align: center; }
-.detail-card .order .reserved {
+.detail-card .order .reserve-btn {
   width: 1.9rem;
   height: .54rem;
   border-radius: .08rem;
@@ -110,8 +110,14 @@ input {
   align-items: center;
   justify-content: center;
   font-size: .32rem;
+  box-sizing: border-box; }
+.detail-card .order .reserved {
   color: #fff;
   background: #009688; }
+.detail-card .order .reserve {
+  border: 1px solid #009688;
+  color: #009688;
+  background: #fff; }
 
 .home .mars-carousel {
   width: 100%;
@@ -325,24 +331,24 @@ input {
 .sign .commit-area .service span {
   color: #878787; }
 
-.download {
+.load {
   width: 60%;
   margin: 0 auto; }
-.download > div {
+.load > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
-.download h3 {
+.load h3 {
   padding-top: 1.4rem;
   font-size: .72rem;
   color: #009688;
   font-family: 'Helvetica'; }
-.download p {
+.load p {
   padding-top: .4rem;
   text-align: center;
   font-size: .44rem;
   color: #4a4a4a; }
-.download .btn {
+.load .btn {
   width: 3.6rem;
   height: .54rem;
   line-height: .54rem;
@@ -353,7 +359,7 @@ input {
   background: #fff;
   font-size: .32rem;
   color: #4a4a4a; }
-.download .loading {
+.load .loading {
   padding-top: 1.64rem;
   width: 2.4rem;
   height: 2.4rem; }

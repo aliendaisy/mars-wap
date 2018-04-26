@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
 
 class Sign extends Component{
+    componentDidMount() {
+        document.body.style.background = '#fff';
+    }
     render() {
         return(
             <div className="sign">

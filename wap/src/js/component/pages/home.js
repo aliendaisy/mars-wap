@@ -5,9 +5,10 @@ import React,{Component} from 'react';
 import Header from '../items/header';
 import DetailCard from '../items/detail-card';
 
-
 import { Carousel,Tabs } from 'antd-mobile';
 import {fetchJson} from "../functional/common";
+
+import {Redirect} from 'react-router-dom';
 
 
 class Home extends Component{
@@ -61,8 +62,8 @@ class Home extends Component{
                     dots={true}
                     dotStyle={{
                         background: 'transparent',
-                        width: '.16rem',
-                        height: '.16rem',
+                        width: '.12rem',
+                        height: '.12rem',
                         margin: '0 .1rem',
                         display: 'block',
                         borderRadius: '50%',
@@ -70,8 +71,8 @@ class Home extends Component{
                     }}
                     dotActiveStyle={{
                         background: 'rgba(0,0,0,0.5)',
-                        width: '.16rem',
-                        height: '.16rem',
+                        width: '.12rem',
+                        height: '.12rem',
                         margin: '0 .1rem',
                         display: 'block',
                         borderRadius: '50%',
