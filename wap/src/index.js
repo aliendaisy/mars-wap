@@ -6,7 +6,7 @@ import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 // import createBrowserHistory from 'history/createBrowserHistory';
 
 // 按路由拆分代码
-import Loadable from 'react-loadable';
+// import Loadable from 'react-loadable';
 import {Provider} from 'react-redux'
 
 import './css/iconfont.css';

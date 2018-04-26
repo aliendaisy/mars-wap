@@ -5,11 +5,43 @@ import React,{Component} from 'react';
 import Header from '../items/header';
 import DetailCard from '../items/detail-card';
 
-import { Carousel,Tabs } from 'antd-mobile';
+import { Carousel,PullToRefresh,Tabs } from 'antd-mobile';
 import {fetchJson} from "../functional/common";
 
 import {Redirect} from 'react-router-dom';
 
+
+const data = [
+    {
+        imgUrl: `https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png`,
+        name: 'Food1',
+        heartNum: 35,
+        addr: '123 Street, Jersey City',
+        time: '2018.01.01 - 12:00 PM - 12:30 PM',
+        price: 15
+    },{
+        imgUrl: `https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png`,
+        name: 'Food1',
+        heartNum: 35,
+        addr: '123 Street, Jersey City',
+        time: '2018.01.01 - 12:00 PM - 12:30 PM',
+        price: 15
+    },{
+        imgUrl: `https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png`,
+        name: 'Food1',
+        heartNum: 35,
+        addr: '123 Street, Jersey City',
+        time: '2018.01.01 - 12:00 PM - 12:30 PM',
+        price: 15
+    },{
+        imgUrl: `https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png`,
+        name: 'Food1',
+        heartNum: 35,
+        addr: '123 Street, Jersey City',
+        time: '2018.01.01 - 12:00 PM - 12:30 PM',
+        price: 15
+    },
+];
 
 class Home extends Component{
     constructor(props) {
@@ -33,7 +65,8 @@ class Home extends Component{
                 {title: 'Market'}
             ],
             dayIndex: 0,
-            typeIndex: 0
+            typeIndex: 0,
+            toProduct: false //是否跳转详情页的指针
         }
     }
     componentDidMount() {
@@ -52,7 +85,13 @@ class Home extends Component{
             typeIndex: index
         });
     }
+    toProduct() {
+        this.setState({toProduct: true});
+    }
     render() {
+        if(this.state.toProduct) {
+            return <Redirect push to="/product"/>
+        }
         return(
             <div className="home">
                 <Header/>
@@ -150,23 +189,23 @@ class Home extends Component{
                 </div>
                 {/*获取事件详情*/}
 
-                <DetailCard
-                    imgUrl={`https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png`}
-                    name={'Food1'}
-                    heartNum={35}
-                    addr={'123 Street, Jersey City'}
-                    time={'2018.01.01 - 12:00 PM - 12:30 PM'}
-                    price={15}
-                />
+                <PullToRefresh>
+                    {data.map((res) => {
+                        return(
+                            <DetailCard
+                                onClick={this.toProduct.bind(this)}
+                                imgUrl={res.imgUrl}
+                                name={res.name}
+                                heartNum={res.heartNum}
+                                addr={res.addr}
+                                time={res.time}
+                                price={res.price}
+                            />
+                        )
+                    })}
+                </PullToRefresh>
 
-                <DetailCard
-                    imgUrl={`https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png`}
-                    name={'Food1'}
-                    heartNum={35}
-                    addr={'123 Street, Jersey City'}
-                    time={'2018.01.01 - 12:00 PM - 12:30 PM'}
-                    price={15}
-                />
+
 
 
 

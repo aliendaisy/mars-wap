@@ -25,7 +25,7 @@ class DetailCard extends Component{
 
         return(
             <div className="detail-card">
-                <div className="img-container">
+                <div className="img-container" onClick={this.props.onClick}>
                     <img src={imgUrl} alt=""/>
                 </div>
                 <div className="info">
