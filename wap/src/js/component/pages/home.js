@@ -5,11 +5,12 @@ import React,{Component} from 'react';
 import Header from '../items/header';
 import DetailCard from '../items/detail-card';
 
-import { Carousel,PullToRefresh,Tabs } from 'antd-mobile';
+import { Carousel,PullToRefresh } from 'antd-mobile';
 import {fetchJson} from "../functional/common";
 
 import {Redirect} from 'react-router-dom';
 
+import 'antd-mobile/lib/pull-to-refresh/style/css.js'; //获取样式
 
 const data = [
     {
@@ -66,7 +67,8 @@ class Home extends Component{
             ],
             dayIndex: 0,
             typeIndex: 0,
-            toProduct: false //是否跳转详情页的指针
+            toProduct: false, //是否跳转详情页的指针
+            refreshing: false,
         }
     }
     componentDidMount() {
@@ -171,28 +173,33 @@ class Home extends Component{
                             })}
                         </ul>
                     </div>
-                    {/*<div className="category-list-box">*/}
-                        {/*<Tabs*/}
-                            {/*tabs={this.state.category}*/}
-                            {/*tabDirection={'horizontal'}*/}
-                            {/*tabBarTextStyle={{fontSize: '.4rem'}}*/}
-                            {/*tabBarActiveTextColor={'#009688'}*/}
-                            {/*tabBarInactiveTextColor={'#000'}*/}
-                            {/*tabBarUnderlineStyle={{borderBottom:'.1rem solid #009688'}}*/}
-                            {/*renderTabBar={props => <Tabs.DefaultTabBar {...props} page={3} />}*/}
-                        {/*>*/}
-
-                        {/*</Tabs>*/}
-
-                    {/*</div>*/}
-
                 </div>
                 {/*获取事件详情*/}
 
-                <PullToRefresh>
-                    {data.map((res) => {
+                <PullToRefresh
+                    style={{background: '#fff'}}
+                    direction="down"
+                    distanceToRefresh="50"
+                    /*onRefresh={() => {*/
+                        /*this.setState({ refreshing: true });*/
+                        /*setTimeout(() => {*/
+                            /*this.setstate({ refreshing: false });*/
+                        /*}, 1000);*/
+                    /*}}*/
+                    indicator={{
+                        activate: 'Release to complete',
+                        deactivate: 'Pull to refresh',
+                        finish: 'Refreshed',
+                        release:
+                            <div style={{transform: 'translateY(-20px)'}}>
+                                <img style={{width: '30px',height: '30px'}} src={require("../../../images/loading.gif")} alt=""/>
+                            </div>
+                    }}
+                >
+                    {data.map((res,i) => {
                         return(
                             <DetailCard
+                                key={i}
                                 onClick={this.toProduct.bind(this)}
                                 imgUrl={res.imgUrl}
                                 name={res.name}
