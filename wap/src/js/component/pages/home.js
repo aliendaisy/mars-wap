@@ -175,16 +175,19 @@ class Home extends Component{
                     </div>
                 </div>
                 {/*获取事件详情*/}
-
                 <PullToRefresh
-                    style={{background: '#fff'}}
+                    style={{
+                        background: '#fff',
+                        height: '10.88rem',
+                        overflow: 'auto'
+                    }}
                     direction="down"
                     distanceToRefresh="50"
                     /*onRefresh={() => {*/
-                        /*this.setState({ refreshing: true });*/
-                        /*setTimeout(() => {*/
-                            /*this.setstate({ refreshing: false });*/
-                        /*}, 1000);*/
+                    /*this.setState({ refreshing: true });*/
+                    /*setTimeout(() => {*/
+                    /*this.setstate({ refreshing: false });*/
+                    /*}, 1000);*/
                     /*}}*/
                     indicator={{
                         activate: 'Release to complete',
@@ -211,6 +214,7 @@ class Home extends Component{
                         )
                     })}
                 </PullToRefresh>
+
 
 
 

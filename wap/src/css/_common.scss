@@ -18,6 +18,9 @@ body{
 input{
   border: none;
 }
+body,div{
+  -webkit-overflow-scrolling: touch;
+}
 .whiteBg{
   background: #fff;
 }
