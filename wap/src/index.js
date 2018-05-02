@@ -18,6 +18,7 @@ import Profile from './js/component/pages/profile';
 import Sign from './js/component/pages/sign';
 import Download from './js/component/pages/download';
 
+import store from './js/store/store'
 
 
 
@@ -122,7 +123,7 @@ export class Root extends React.Component{
 const root = document.getElementById('root');
 
 ReactDOM.render(
-    <Provider>
+    <Provider store={store}>
         <Root/>
     </Provider>,root
 );

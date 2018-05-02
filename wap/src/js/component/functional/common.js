@@ -9,7 +9,7 @@ export function fetchJson(url,params,cb){
         method: 'post',
         headers: myHeaders,
         mode: 'cors',
-        credentials: 'include',
+        // credentials: 'include',
         body: JSON.stringify({params})
     }).then(res => {
         res.json().then(function(data){
