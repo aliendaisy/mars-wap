@@ -2,6 +2,7 @@
  * Created by Administrator on 2018/4/13.
  */
 import React,{Component} from 'react';
+import moment from 'moment';
 import Header from '../items/header';
 import DetailCard from '../items/detail-card';
 
@@ -50,30 +51,37 @@ class Home extends Component{
         this.state = {
             imgHeight: '3.2rem',
             data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
-            week: [
-                {week: 'Mon',day: '01.01'},
-                {week: 'Tue',day: '01.02'},
-                {week: 'Wed',day: '01.03'},
-                {week: 'Thu',day: '01.04'},
-                {week: 'Fri',day: '01.05'},
-                {week: 'Sat',day: '01.06'},
-                {week: 'Sun',day: '01.07'},
-            ],
-            category: [
-                {title: 'Food'},
-                {title: 'Lunch'},
-                {title: 'Dinner'},
-                {title: 'Market'}
-            ],
+            week: [], //日期数组
+            category: [], //事件数组
             dayIndex: 0,
             typeIndex: 0,
             toProduct: false, //是否跳转详情页的指针
             refreshing: false,
         }
     }
+    componentWillMount() {
+        let dateArr = [];
+
+        for(let i = 0;i < 7;) {
+            let week = moment(new Date()).add(i, 'days').format('dddd').substring(0,3);
+            let date = moment(new Date()).add(i, 'days').format('MM.DD');
+            dateArr.push({'week': week, 'date': date});
+            i ++;
+        }
+
+        this.setState({week: dateArr});
+    }
     componentDidMount() {
+        let eventArr = [];
         fetchJson('/user/getEventType',{},msg => {
             console.log(msg);
+            if(msg.result === "success") {
+                let data = msg.data.event_type_list;
+                data.map(res => {
+                    eventArr.push({'title': res})
+                });
+                this.setState({category: eventArr});
+            }
         });
 
     }
@@ -151,7 +159,7 @@ class Home extends Component{
                                         onClick={this.dayClick.bind(this,i)}
                                     >
                                         <p>{val.week}</p>
-                                        <p>{val.day}</p>
+                                        <p>{val.date}</p>
                                     </li>
                                 )
                             })}
