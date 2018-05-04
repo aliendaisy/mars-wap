@@ -2,16 +2,20 @@
  * Created by Administrator on 2018/4/13.
  */
 import React,{Component} from 'react';
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 import moment from 'moment';
+
+import { Carousel,PullToRefresh } from 'antd-mobile';
+import 'antd-mobile/lib/pull-to-refresh/style/css.js'; //获取样式
+
 import Header from '../items/header';
 import DetailCard from '../items/detail-card';
 
-import { Carousel,PullToRefresh } from 'antd-mobile';
 import {fetchJson} from "../functional/common";
 
-import {Redirect} from 'react-router-dom';
+import {requestPosts,selectDate} from '../../action/action';
 
-import 'antd-mobile/lib/pull-to-refresh/style/css.js'; //获取样式
 
 const data = [
     {
@@ -83,12 +87,25 @@ class Home extends Component{
                 this.setState({category: eventArr});
             }
         });
+        fetchJson('/user/getEventList', {date: new Date(), event_type: 'Food',}, msg => {
+            console.log(msg);
+            if(msg.result === "success") {
+                // let data = msg.data.event_type_list;
+                // data.map(res => {
+                //     eventArr.push({'title': res})
+                // });
+                // this.setState({category: eventArr});
+            }
+        });
+
+
 
     }
     dayClick(index) {
         this.setState({
             dayIndex: index
         });
+        this.props.selectDate(this.state.week[index].week)
     }
     typeClick(index) {
         this.setState({
@@ -233,4 +250,24 @@ class Home extends Component{
     }
 }
 
-export default Home;
+const mapStateToProps = (state,props) => {
+    return state;
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    // selectDate: (dispatch,getDate) => {
+    //     dispatch(selectDate((dispatch,getDate)));
+    // }
+
+    selectDate: () => (response) => {
+        dispatch(requestPosts());
+        return fetchJson(`/user/getEventList`, {date: new Date(), event_type: 'Food'}, response => {
+            dispatch({
+                type: 'SELECT_DATE',
+                date: response
+            });
+        });
+    };
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);
