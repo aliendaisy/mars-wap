@@ -5,10 +5,7 @@ const goodsDefault = {
 
 const Reducer = (state={goods: goodsDefault,user: {}},action) => {
     switch (action.type) {
-        case "PENDING":
-            console.log("i'm pending...");
-            break;
-        case "SELECT_DATE":
+        case "SELECT_DATE_TYPE":
             let date = action.date;
             return {...state.goods,date: date};
     }

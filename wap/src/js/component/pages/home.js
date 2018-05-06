@@ -12,10 +12,12 @@ import 'antd-mobile/lib/pull-to-refresh/style/css.js'; //获取样式
 import Header from '../items/header';
 import DetailCard from '../items/detail-card';
 
-import {fetchJson} from "../functional/common";
+import {fetchJson,compute} from "../functional/common";
 
-import {requestPosts,selectDate} from '../../action/action';
+import {selectDateType} from '../../action/action';
+import {bindActionCreators} from 'redux';
 
+const year = new Date().getFullYear();
 
 const data = [
     {
@@ -77,41 +79,61 @@ class Home extends Component{
     }
     componentDidMount() {
         let eventArr = [];
+
         fetchJson('/user/getEventType',{},msg => {
             console.log(msg);
-            if(msg.result === "success") {
-                let data = msg.data.event_type_list;
-                data.map(res => {
-                    eventArr.push({'title': res})
-                });
-                this.setState({category: eventArr});
-            }
+            let data = msg.event_type_list;
+            data.map(res => {
+                eventArr.push({'title': res})
+            });
+            this.setState({category: eventArr});
+            //默认初始化事件列表
+            // let fetch = fetchJson('/user/getEventList', {date: new Date(), event_type: data[0]}, doc => {
+            //     console.log('doc', doc);
+            // });
+            let fetch = compute(new Date(), data[0]);
+            alert('....', fetch);
+            this.props.selectDateType(fetch);
         });
-        fetchJson('/user/getEventList', {date: new Date(), event_type: 'Food',}, msg => {
-            console.log(msg);
-            if(msg.result === "success") {
-                // let data = msg.data.event_type_list;
-                // data.map(res => {
-                //     eventArr.push({'title': res})
-                // });
-                // this.setState({category: eventArr});
-            }
-        });
-
-
-
     }
+    //点击切换时间
     dayClick(index) {
         this.setState({
             dayIndex: index
         });
-        this.props.selectDate(this.state.week[index].week)
+
+        let month = parseInt(this.state.week[index].date.split('.')[0]) - 1;
+        let day = parseInt(this.state.week[index].date.split('.')[1]);
+
+        let date = new Date(year,month,day);
+        let event = this.state.category[this.state.typeIndex].title; //事件类型
+
+        //点击更新事件列表
+        let fetch = fetchJson('/user/getEventList', {date: date, event_type: event}, doc => {
+            console.log('doc', doc);
+        });
+        this.props.selectDateType(fetch);
     }
+    //点击切换事件类型
     typeClick(index) {
         this.setState({
             typeIndex: index
         });
+
+        let month = parseInt(this.state.week[this.state.dayIndex].date.split('.')[0]) - 1;
+        let day = parseInt(this.state.week[this.state.dayIndex].date.split('.')[1]);
+
+        let date = new Date(year,month,day);
+        let event = this.state.category[index].title; //事件类型
+
+        //点击更新事件列表
+        let fetch = fetchJson('/user/getEventList', {date: date, event_type: event}, doc => {
+            console.log('doc', doc);
+        });
+        this.props.selectDateType(fetch);
+
     }
+
     toProduct() {
         this.setState({toProduct: true});
     }
@@ -254,20 +276,14 @@ const mapStateToProps = (state,props) => {
     return state;
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => {
     // selectDate: (dispatch,getDate) => {
     //     dispatch(selectDate((dispatch,getDate)));
     // }
+    return bindActionCreators({
+        selectDateType
+    },dispatch);
 
-    selectDate: () => (response) => {
-        dispatch(requestPosts());
-        return fetchJson(`/user/getEventList`, {date: new Date(), event_type: 'Food'}, response => {
-            dispatch({
-                type: 'SELECT_DATE',
-                date: response
-            });
-        });
-    };
-});
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(Home);
+export default connect(null,mapDispatchToProps)(Home);
