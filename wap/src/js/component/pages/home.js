@@ -4,6 +4,7 @@
 import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import moment from 'moment';
 
 import { Carousel,PullToRefresh } from 'antd-mobile';
@@ -16,7 +17,6 @@ import DetailCard from '../items/detail-card';
 import {getEventType,getEventList} from "../functional/common";
 
 import {selectDateType} from '../../action/action';
-import {bindActionCreators} from 'redux';
 
 const year = new Date().getFullYear();
 const commonPath = "http://www.marstail.com:20000";

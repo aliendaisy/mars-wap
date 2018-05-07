@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 //fetch通信  POST通信
 export function fetchJson(url,params,cb){
     let myHeaders = new Headers({"Content-Type": "application/json"});
-    let headerUrl = "http://www.marstail.com:20000/v1";
+    let headerUrl = "http://www.marstail.com:20000";
     let allUrl = headerUrl + url;
     fetch(allUrl,{
         method: 'post',
@@ -15,7 +15,7 @@ export function fetchJson(url,params,cb){
         console.log('params: ', params);
         return res.json();
     }).then((json) =>{
-        if(json.result === "success") {
+        if(json.result === "success" || json.message === "success") {
             return cb(json.data);
         }else{
             return cb(json.msg);
@@ -28,7 +28,7 @@ export function fetchJson(url,params,cb){
 //获取事件类型
 export function getEventType() {
     return new Promise(resolve => {
-        fetchJson('/user/getEventType',{}, doc => {
+        fetchJson('/v1/user/getEventType',{}, doc => {
             resolve(doc);
         });
     })
@@ -37,10 +37,19 @@ export function getEventType() {
 //获取事件列表
 export function getEventList(date, event) {
     return new Promise(resolve => {
-        fetchJson('/user/getEventList', {date: date, event_type: event}, doc => {
+        fetchJson('/v1/user/getEventList', {date: date, event_type: event}, doc => {
             resolve(doc);
         });
     });
 }
 
+
+//登录
+export function login(email, pwd) {
+    return new Promise(resolve => {
+        fetchJson('/mobile/owner/login', {email: email, password: pwd}, doc => {
+            resolve(doc);
+        })
+    })
+}
 
