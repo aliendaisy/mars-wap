@@ -7,7 +7,7 @@ class Sign extends Component{
             isSignUp: false
         }
     }
-    componentDidMount() {
+    componentWillMount() {
         document.body.style.background = '#fff';
     }
     render() {

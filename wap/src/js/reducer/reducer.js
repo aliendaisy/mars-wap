@@ -1,14 +1,14 @@
 import moment from 'moment';
-const goodsDefault = {
-    date: moment(new Date()).format('dddd').substring(0,3)
-};
 
-const Reducer = (state={goods: goodsDefault,user: {}},action) => {
+const Reducer = (state={},action) => {
     switch (action.type) {
+        case "LOADING":
+            return {...state,loading: true};
         case "SELECT_DATE_TYPE":
-            let date = action.date;
-            return {...state.goods,date: date};
+            delete state.loading;
+            return {...state, goodsList: action.payload.value};
     }
+    return state;
 };
 
 export default Reducer;

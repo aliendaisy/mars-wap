@@ -25,8 +25,13 @@ class DetailCard extends Component{
 
         return(
             <div className="detail-card">
-                <div className="img-container" onClick={this.props.onClick}>
-                    <img src={imgUrl} alt=""/>
+                <div
+                    className="img-container"
+                    onClick={this.props.onClick}
+                    style={{background: `url(${imgUrl}) no-repeat`,}}
+                >
+                    {/*<img src={imgUrl} alt=""/>*/}
+                    {/*<div style={{background: `url(`${imgUrl}`) no-repeat`,backgroundSize: 'cover'}}></div>*/}
                 </div>
                 <div className="info">
                     <div className="top">

@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 
 class Download extends Component{
-    componentDidMount() {
+    componentWillMount() {
         document.body.style.background = '#fff';
     }
     render() {

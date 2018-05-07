@@ -12,6 +12,7 @@ export function fetchJson(url,params,cb){
         //credentials: 'include',
         body: JSON.stringify(params)
     }).then(res => {
+        console.log('params: ', params);
         return res.json();
     }).then((json) =>{
         if(json.result === "success") {
@@ -24,32 +25,22 @@ export function fetchJson(url,params,cb){
     });
 }
 
-// export function getEventList(date,event) {
-//     return async(result) => {
-//         await Promise.resolve(
-//             fetchJson('/user/getEventList', {date: date, event_type: event}, doc => {
-//                 result = doc;
-//             })
-//         );
-//     }
-//     fetchJson('/user/getEventList', {date: date, event_type: event}, doc => {
-//         result = doc;
-//     });
-// }
-
-function getEventList(date, event) {
+//获取事件类型
+export function getEventType() {
     return new Promise(resolve => {
-        // setTimeout(function() {
-        //     r = 2;
-        //     resolve(r);
-        // }, 10);
+        fetchJson('/user/getEventType',{}, doc => {
+            resolve(doc);
+        });
+    })
+}
+
+//获取事件列表
+export function getEventList(date, event) {
+    return new Promise(resolve => {
         fetchJson('/user/getEventList', {date: date, event_type: event}, doc => {
             resolve(doc);
-        })
+        });
     });
 }
 
-export async function compute(date,event) {
-    let x = await getEventList(date,event);
-    console.log(x);
-}
+
