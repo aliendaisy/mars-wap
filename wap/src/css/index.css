@@ -70,6 +70,8 @@ body, div {
   font-size: .28rem; }
 .header .logo + div .iconfont {
   padding-left: .2rem; }
+.header a {
+  color: #000; }
 
 .detail-card .img-container {
   width: 100%;
@@ -289,8 +291,7 @@ body, div {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 50%;
-  display: flex;
-  justify-content: flex-end; }
+  text-align: right; }
 
 .edit-info {
   height: calc(100% - .8rem);

@@ -1,6 +1,12 @@
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import TopBar from '../items/topBar';
+
+import {AuthCheck} from "../../action/action";
+import {commonPath} from '../../reducer/reducer';
+
 
 class Profile extends Component{
     constructor(props) {
@@ -8,10 +14,28 @@ class Profile extends Component{
         this.state = {
             isShow: false,  //是否显示顶部save的标识
             son: false,  //是否显示编辑内容的标识
+            tokenUse: true,
             infoType: 'name',
-            name: 'Alien',
-            signature: 'Im an et'
+            name: 'M',
+            signature: 'Something about me'
         }
+    }
+    componentDidMount() {
+        //登录验证
+        if(!this.props.user) {
+            this.props.AuthCheck().then(() => {
+                this.setState({
+                    avatar: `${commonPath}${this.props.user.header}`,
+                    name: this.props.user.user_name
+                });
+            });
+        }else{
+            this.setState({
+                avatar: `${commonPath}${this.props.user.header}`,
+                name: this.props.user.user_name
+            });
+        }
+
     }
     editName() {
         this.setState({
@@ -40,7 +64,7 @@ class Profile extends Component{
                 <div className={this.state.son ? "label-box none" : "label-box"}>
                     <div className="label-fat">
                         <p>Profile photo</p>
-                        <img src="" alt="" className="img-box"/>
+                        <img src={this.state.avatar} alt="" className="img-box"/>
                     </div>
                     <div className="label-thin" onClick={this.editName.bind(this)}>
                         <p>Name</p>
@@ -75,4 +99,13 @@ class EditInfo extends Component{
     }
 }
 
-export default Profile;
+const mapStateToProps = (state,props) => {
+    console.log(state)
+    return state;
+};
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return bindActionCreators({
+        AuthCheck
+    },dispatch);
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

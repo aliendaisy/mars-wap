@@ -18,8 +18,9 @@ import {getEventType,getEventList} from "../functional/common";
 
 import {selectDateType} from '../../action/action';
 
+import {commonPath} from '../../reducer/reducer';
+
 const year = new Date().getFullYear();
-const commonPath = "http://www.marstail.com:20000";
 
 class Home extends Component{
     constructor(props) {

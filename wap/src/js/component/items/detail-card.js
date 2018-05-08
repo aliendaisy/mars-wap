@@ -16,6 +16,7 @@ class DetailCard extends Component{
     }
     interestToggle() {
         this.setState({isInterest: !this.state.isInterest});
+
     }
     reserveToggle() {
         this.setState({isReserved: !this.state.isReserved});
@@ -30,8 +31,6 @@ class DetailCard extends Component{
                     onClick={this.props.onClick}
                     style={{background: `url(${imgUrl}) no-repeat`,}}
                 >
-                    {/*<img src={imgUrl} alt=""/>*/}
-                    {/*<div style={{background: `url(`${imgUrl}`) no-repeat`,backgroundSize: 'cover'}}></div>*/}
                 </div>
                 <div className="info">
                     <div className="top">

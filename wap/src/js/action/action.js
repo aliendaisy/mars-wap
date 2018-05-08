@@ -1,3 +1,5 @@
+import {tokenLogin} from '../component/functional/common';
+
 //请求获取事件列表接口
 export const selectDateType = ({isRefresh = false,fetchPost}) => async(dispatch, getState) => {
     if(!isRefresh) {
@@ -13,9 +15,33 @@ export const selectDateType = ({isRefresh = false,fetchPost}) => async(dispatch,
         }
     });
 };
-
-export const authCheck = (fetchPost) => async(dispatch, getState) => {
+//登录接口
+export const Login = (fetchPost) => async(dispatch, getState) => {
     let value = await Promise.resolve(fetchPost);
+
+    await dispatch({
+        type: 'LOGIN',
+        payload: {
+            value
+        }
+    })
+};
+
+//注册接口
+export const Signup = (fetchPost) => async(dispatch, getState) => {
+    let value = await Promise.resolve(fetchPost);
+
+    await dispatch({
+        type: 'SIGN_UP',
+        payload: {
+            value
+        }
+    })
+};
+
+//Token登录接口
+export const AuthCheck = () => async(dispatch, getState) => {
+    let value = await Promise.resolve(tokenLogin());
 
     await dispatch({
         type: 'AUTH_CHECK',

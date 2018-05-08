@@ -18,7 +18,7 @@ export function fetchJson(url,params,cb){
         if(json.result === "success" || json.message === "success") {
             return cb(json.data);
         }else{
-            return cb(json.msg);
+            return cb(json.message);
         }
     }).catch(err => {
         console.log(err);
@@ -50,6 +50,17 @@ export function login(email, pwd) {
         fetchJson('/mobile/owner/login', {email: email, password: pwd}, doc => {
             resolve(doc);
         })
-    })
+    });
 }
 
+//token登录
+export function tokenLogin() {
+    let token = localStorage.getItem('token');
+    if(token && token !== undefined && token !== null) {
+        return new Promise(resolve => {
+            fetchJson('/mobile/owner/tokenLogin', {token: token}, doc => {
+                resolve(doc);
+            })
+        });
+    }
+}
