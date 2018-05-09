@@ -19,13 +19,17 @@ const Reducer = (state={},action) => {
             }else{
                 return {...state, errMsg: action.payload.value};
             }
-        //注册
+        //注册 todo
         case "SIGN_UP":
 
             return {...state};
         //登录验证
         case "AUTH_CHECK":
+
             return {...state, user: action.payload.value.ownerInfo};
+
+        case "THUMB_UP":
+
 
         case "SHOW_DETAIL":
 

@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 
 import NumChange from '../functional/numChange';
 
-import {ShowDetail} from '../../action/action';
+import {thumbUp} from "../functional/common";
+import {ShowDetail, ThumbUp} from '../../action/action';
 
 
 class DetailCard extends Component{
@@ -20,11 +21,6 @@ class DetailCard extends Component{
 
     }
     toProduct() {
-        // console.log(ei,ci);
-        // let fetch = getEventDetail('798758309@qq.com',ei,ci);
-        // let {imgUrl,name,heartNum,addr,time,price,eventId,commodityId} = {...this.props};
-        //
-        // console.log({...this.props})
         if(!this.props.isProduct) {
             this.context.router.history.push('/product');
         }
@@ -39,6 +35,9 @@ class DetailCard extends Component{
     interestToggle(e) {
         this.setState({isInterest: !this.state.isInterest});
         console.log(e)
+
+        let fetch = thumbUp('',e);
+        // this.props.ThumbUp(fetch);
     }
     eventToggle(e) {
         this.setState({isReserved: !this.state.isReserved});
@@ -60,7 +59,7 @@ class DetailCard extends Component{
                         <div>
                             <span
                                 className={this.state.isInterest ? "iconfont icon-full" : "iconfont icon-heart"}
-                                onClick={this.interestToggle.bind(this,eventId)}>
+                                onClick={this.interestToggle.bind(this,commodityId)}>
                             </span>
                             <p className="heart">{heartNum}</p>
                             <span className="iconfont icon-share">
@@ -79,7 +78,7 @@ class DetailCard extends Component{
                     />
                     <div
                         className={this.state.isReserved ? "reserve-btn reserved" : "reserve-btn reserve"}
-                        onClick={this.eventToggle.bind(this,eventId)}
+                        onClick={this.eventToggle.bind(this,commodityId)}
                     >Reserved</div>
                 </div>
             </div>
@@ -97,7 +96,7 @@ const mapStateToProps = (state,props) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return bindActionCreators({
-        ShowDetail
+        ShowDetail, ThumbUp
     },dispatch);
 
 };

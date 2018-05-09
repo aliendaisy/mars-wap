@@ -24,6 +24,29 @@ export function fetchJson(url,params,cb){
     });
 }
 
+
+//登录
+export function login(email, pwd) {
+    return new Promise(resolve => {
+        fetchJson('/mobile/owner/login', {email: email, password: pwd}, doc => {
+            resolve(doc);
+        })
+    });
+}
+
+//token登录
+export function tokenLogin() {
+    let token = localStorage.getItem('token');
+    if(token && token !== undefined && token !== null) {
+        return new Promise(resolve => {
+            fetchJson('/mobile/owner/tokenLogin', {token: token}, doc => {
+                resolve(doc);
+            })
+        });
+    }
+}
+
+
 //获取事件类型
 export function getEventType() {
     return new Promise(resolve => {
@@ -58,25 +81,11 @@ export function getEventDetail(email, event_id, commodity_id) {
     });
 }
 
-
-//登录
-export function login(email, pwd) {
+//点赞事件
+export function thumbUp(email, commodity_id) {
     return new Promise(resolve => {
-        fetchJson('/mobile/owner/login', {email: email, password: pwd}, doc => {
+        fetchJson('/v1/user/thumbUp', {email: email, commodity_id: commodity_id}, doc => {
             resolve(doc);
-        })
+        });
     });
 }
-
-//token登录
-export function tokenLogin() {
-    let token = localStorage.getItem('token');
-    if(token && token !== undefined && token !== null) {
-        return new Promise(resolve => {
-            fetchJson('/mobile/owner/tokenLogin', {token: token}, doc => {
-                resolve(doc);
-            })
-        });
-    }
-}
-

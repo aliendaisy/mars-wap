@@ -24,10 +24,10 @@ export const Login = (fetchPost) => async(dispatch, getState) => {
         payload: {
             value
         }
-    })
+    });
 };
 
-//注册接口
+//注册接口 todo
 export const Signup = (fetchPost) => async(dispatch, getState) => {
     let value = await Promise.resolve(fetchPost);
 
@@ -36,7 +36,7 @@ export const Signup = (fetchPost) => async(dispatch, getState) => {
         payload: {
             value
         }
-    })
+    });
 };
 
 //Token登录接口
@@ -48,23 +48,27 @@ export const AuthCheck = () => async(dispatch, getState) => {
         payload: {
             value
         }
-    })
+    });
+};
+
+//点赞事件
+export const ThumbUp = (fetchJson) => async(dispatch, getState) => {
+    let value = await Promise.resolve(fetchJson);
+
+    await dispatch({
+        type: 'THUMB_UP',
+        payload: {
+            value
+        }
+    });
 };
 
 
 
 
+//显示详情页(同步action）
 export const ShowDetail = (detail) => ({
     type: 'SHOW_DETAIL',
     detail: detail
 });
 
-// export const ToProduct = (fetchPost) => async(dispatch, getState) => {
-//     let value = await Promise.resolve(fetchPost);
-//     await dispatch({
-//         type: 'TO_PRODUCT',
-//         payload: {
-//             value
-//         }
-//     });
-// };
