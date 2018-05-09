@@ -48,10 +48,6 @@ body,div{
   align-items: center;
 }
 
-.am-pull-to-refresh-content-wrapper{
-  overflow: visible !important;
-}
-
 @mixin label($height) {
   display: flex;
   justify-content: space-between;

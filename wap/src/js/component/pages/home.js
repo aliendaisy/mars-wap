@@ -2,7 +2,6 @@
  * Created by Administrator on 2018/4/13.
  */
 import React,{Component} from 'react';
-import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import moment from 'moment';
@@ -33,7 +32,6 @@ class Home extends Component{
             dayIndex: 0,
             typeIndex: 0,
             detailArr: [], //存放详情参数的数组
-            toProduct: false, //是否跳转详情页的指针
             refreshing: false,
         }
     }
@@ -59,7 +57,7 @@ class Home extends Component{
             });
             this.setState({category: eventArr});
             //默认初始化事件列表
-            let fetch = getEventList(new Date(), data[0]);
+            let fetch = getEventList(this.state.week, eventArr, 0, 0);
             this.props.selectDateType({fetchPost: fetch});
         });
     }
@@ -69,14 +67,8 @@ class Home extends Component{
             dayIndex: index
         });
 
-        let month = parseInt(this.state.week[index].date.split('.')[0]) - 1;
-        let day = parseInt(this.state.week[index].date.split('.')[1]);
-
-        let date = new Date(year,month,day);
-        let event = this.state.category[this.state.typeIndex].title; //事件类型
-
         //点击更新事件列表
-        let fetch = getEventList(date, event);
+        let fetch = getEventList(this.state.week, this.state.category, index, this.state.typeIndex);
         this.props.selectDateType({fetchPost: fetch});
     }
     //点击切换事件类型
@@ -85,24 +77,12 @@ class Home extends Component{
             typeIndex: index
         });
 
-        let month = parseInt(this.state.week[this.state.dayIndex].date.split('.')[0]) - 1;
-        let day = parseInt(this.state.week[this.state.dayIndex].date.split('.')[1]);
-
-        let date = new Date(year,month,day);
-        let event = this.state.category[index].title; //事件类型
-
         //点击更新事件列表
-        let fetch = getEventList(date, event);
+        let fetch = getEventList(this.state.week, this.state.category, this.state.dayIndex, index);
         this.props.selectDateType({fetchPost: fetch});
     }
 
-    toProduct() {
-        this.setState({toProduct: true});
-    }
     render() {
-        if(this.state.toProduct) {
-            return <Redirect push to="/product"/>
-        }
 
         return(
             <div className="home">
@@ -152,7 +132,7 @@ class Home extends Component{
                 </div>
 
                 {/*中间选择区域*/}
-                <div className="whiteBg" style={{position: 'relative',zIndex: 3}}>
+                <div className="whiteBg">
                     <div className="week-list-box">
                         <ul className="week-list">
                             {this.state.week.map((val,i) => {
@@ -191,20 +171,14 @@ class Home extends Component{
                 <PullToRefresh
                     style={{
                         background: '#fff',
-                        maxHeight: 'calc(10.88rem + 25px)',
-                        position: 'relative',
-                        zIndex: 2
+                        maxHeight: '10.88rem',
+                        overflow: 'auto'
                     }}
                     direction="down"
                     distanceToRefresh="50"
                     onRefresh={() => {
-                        let month = parseInt(this.state.week[this.state.dayIndex].date.split('.')[0]) - 1;
-                        let day = parseInt(this.state.week[this.state.dayIndex].date.split('.')[1]);
-
-                        let date = new Date(year,month,day);
-                        let event = this.state.category[this.state.typeIndex].title; //事件类型
-
-                        let fetch = getEventList(date, event);
+                        let fetch =
+                            getEventList(this.state.week, this.state.category, this.state.dayIndex, this.state.typeIndex);
                         this.props.selectDateType({isRefresh: true,fetchPost: fetch});
                     }}
                     indicator={{
@@ -225,20 +199,22 @@ class Home extends Component{
                             /*判断goodsList是否存在,对store里的数据进行遍历渲染*/
                             if(this.props.goodsList) {
                                 if(this.props.goodsList.length > 0) {
-                                    return (this.props.goodsList.map((res,i) => {
-                                        return(
+                                    return (this.props.goodsList.map((res,i) =>
+                                        (
                                             <DetailCard
                                                 key={i}
-                                                onClick={this.toProduct.bind(this)}
                                                 imgUrl={`${commonPath}${res.context.url}`}
                                                 name={res.context.name}
                                                 heartNum={res.context.thumb_up_num}
                                                 addr={res.address}
                                                 time={`${year}.${this.state.week[this.state.dayIndex].date}-${res.start_time}-${res.end_time}`}
                                                 price={res.context.price}
+                                                eventId={res.event_id}
+                                                commodityId={res.context.commodity_id}
+                                                isProduct={false}
                                             />
                                         )
-                                    }))
+                                    ))
                                 }else{
                                     return (
                                         <div style={{

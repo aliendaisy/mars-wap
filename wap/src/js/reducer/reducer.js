@@ -27,7 +27,15 @@ const Reducer = (state={},action) => {
         case "AUTH_CHECK":
             return {...state, user: action.payload.value.ownerInfo};
 
+        case "SHOW_DETAIL":
 
+            delete(action.detail.goodsList);
+            delete(action.detail.isProduct);
+
+            let json = JSON.stringify(action.detail);
+            localStorage.setItem('detail', json);
+
+            return {...state, goods: json};
     }
     return state;
 };

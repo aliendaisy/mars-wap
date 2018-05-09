@@ -50,3 +50,21 @@ export const AuthCheck = () => async(dispatch, getState) => {
         }
     })
 };
+
+
+
+
+export const ShowDetail = (detail) => ({
+    type: 'SHOW_DETAIL',
+    detail: detail
+});
+
+// export const ToProduct = (fetchPost) => async(dispatch, getState) => {
+//     let value = await Promise.resolve(fetchPost);
+//     await dispatch({
+//         type: 'TO_PRODUCT',
+//         payload: {
+//             value
+//         }
+//     });
+// };
