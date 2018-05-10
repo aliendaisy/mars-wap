@@ -20,7 +20,6 @@ class Product extends Component{
 
     componentWillMount() {
         document.body.style.background = '#fff';
-
     }
 
     componentDidMount() {
@@ -48,10 +47,8 @@ class Product extends Component{
                     />
                     <div className="label-thin">
                         <div className="provider">
-                            {/*<img src={this.props.provider_avatar} alt=""/>*/}
-                            {/*<p>{this.props.provider}</p>*/}
-                            <img src="" alt=""/>
-                            <p>Name</p>
+                            <img src={detail.provider_avatar} alt=""/>
+                            <p>{detail.provider}</p>
                         </div>
                         <Link to="/download">
                             <p className="chat">Chat<span className="iconfont icon-minus"></span></p>
@@ -64,7 +61,7 @@ class Product extends Component{
                 </div>
 
                 <div className="describe">
-
+                    {detail.describe}
                 </div>
             </div>
         )

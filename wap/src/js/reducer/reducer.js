@@ -4,6 +4,7 @@ export const commonPath = "http://www.marstail.com:20000";
 
 const Reducer = (state={},action) => {
     let goods = state.goodsList ? state.goodsList : JSON.parse(localStorage.getItem('goodsList'));
+    let output = {};
     let outputGoods = {};
     let outputDetail = {};
     switch (action.type) {
@@ -49,20 +50,30 @@ const Reducer = (state={},action) => {
         case "AUTH_CHECK":
 
             return {...state, user: action.payload.value.ownerInfo};
+        case "GET_EVENT_DETAIL":
+
+            output = {...state.detail};
+            output.provider = action.payload.value.name;
+            output.provider_avatar = `${commonPath}${action.payload.value.header}`;
+            output.describe = action.payload.value.commodity.description;
+
+            localStorage.setItem('detail', JSON.stringify(output));
+            return {...state, detail: output}
+
         //跳转详情页
         case "SHOW_DETAIL":
 
-            let detail = {};
+            output = {...state.detail};
 
             goods.map((res) => {
                 if(res.event_id === action.ei && res.commodity_id === action.ci) {
-                    detail = res;
+                    output = res;
                 }
             });
 
-            localStorage.setItem('detail', JSON.stringify(detail));
-            return {...state, detail: detail};
-        //点赞
+            localStorage.setItem('detail', JSON.stringify(output));
+            return {...state, detail: output};
+        //点赞 todo(这里逻辑还是需要优化)
         case "THUMB_UP":
             //更新goodsList中点赞值
             outputGoods = {...goods};

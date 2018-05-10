@@ -22,9 +22,10 @@ class DetailCard extends Component{
     toProduct(ei,ci) {
         if(!this.props.isProduct) {
             let fetch = getEventDetail(ei, ci);
-            this.props.GetEventDetail(fetch);
 
+            this.props.GetEventDetail(fetch); //从接口中获取参数，拼接成detail对象
             this.props.ShowDetail(ei, ci);  //显示主页已有参数到详情页
+
             this.context.router.history.push('/product');
         }
     }
