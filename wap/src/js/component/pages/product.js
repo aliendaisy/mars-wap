@@ -17,8 +17,8 @@ class Product extends Component{
     }
 
     render() {
-        let detail = JSON.parse(localStorage.getItem('detail'));
-
+        let detail = this.props.detail ? this.props.detail : JSON.parse(localStorage.getItem('detail'));
+        console.log(this.props.detail)
         console.log(detail)
         return(
             <div className="product">
@@ -26,12 +26,14 @@ class Product extends Component{
                 <DetailCard
                     imgUrl={detail.imgUrl}
                     name={detail.name}
-                    heartNum={detail.heartNum}
-                    addr={detail.addr}
+                    heartNum={detail.thumb_up_num}
+                    addr={detail.address}
                     time={detail.time}
                     price={detail.price}
-                    eventId={detail.eventId}
-                    commodityId={detail.commodityId}
+                    eventId={detail.event_id}
+                    commodityId={detail.commodity_id}
+                    thumb_up={detail.thumb_up}
+                    join_in={detail.join_in}
                     isProduct={true} //点击是否跳转页面的指针
                 />
             </div>

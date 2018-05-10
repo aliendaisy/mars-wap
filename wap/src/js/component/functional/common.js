@@ -82,7 +82,8 @@ export function getEventDetail(email, event_id, commodity_id) {
 }
 
 //点赞事件
-export function thumbUp(email, commodity_id) {
+export function thumbUp(commodity_id) {
+    let email = localStorage.getItem('email');
     return new Promise(resolve => {
         fetchJson('/v1/user/thumbUp', {email: email, commodity_id: commodity_id}, doc => {
             resolve(doc);

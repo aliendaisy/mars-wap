@@ -1,7 +1,11 @@
 import moment from 'moment';
 export const commonPath = "http://www.marstail.com:20000";
 
+
 const Reducer = (state={},action) => {
+    let goods = state.goodsList ? state.goodsList : JSON.parse(localStorage.getItem('goodsList'));
+    let outputGoods = {};
+    let outputDetail = {};
     switch (action.type) {
         //加载动画
         case "LOADING":
@@ -9,7 +13,25 @@ const Reducer = (state={},action) => {
         //选择日期与事件
         case "SELECT_DATE_TYPE":
             delete state.loading;
-            return {...state, goodsList: action.payload.value};
+            let goodsList = [];
+            action.payload.value.map((res) => {
+                let needs = {
+                    address: res.address,
+                    name: res.context.name,
+                    price: res.context.price,
+                    thumb_up_num: res.context.thumb_up_num,
+                    imgUrl: `${commonPath}${res.context.url}`,
+                    time: `${res.start_time}-${res.end_time}`,
+                    event_id: res.event_id,
+                    commodity_id: res.context.commodity_id,
+                    thumb_up: res.context.thumb_up,
+                    join_in: res.context.jion_in
+                };
+                goodsList.push(needs);
+            });
+            //改变状态时本地存储一份，store保存一份
+            localStorage.setItem('goodsList', JSON.stringify(goodsList));
+            return {...state, goodsList: goodsList};
         //登录
         case "LOGIN":
             if(action.payload.value.ownerInfo) {
@@ -27,19 +49,38 @@ const Reducer = (state={},action) => {
         case "AUTH_CHECK":
 
             return {...state, user: action.payload.value.ownerInfo};
-
-        case "THUMB_UP":
-
-
+        //跳转详情页
         case "SHOW_DETAIL":
 
-            delete(action.detail.goodsList);
-            delete(action.detail.isProduct);
+            let detail = {};
 
-            let json = JSON.stringify(action.detail);
-            localStorage.setItem('detail', json);
+            goods.map((res) => {
+                if(res.event_id === action.ei && res.commodity_id === action.ci) {
+                    detail = res;
+                }
+            });
 
-            return {...state, goods: json};
+            localStorage.setItem('detail', JSON.stringify(detail));
+            return {...state, detail: detail};
+        //点赞
+        case "THUMB_UP":
+            //更新goodsList中点赞值
+            outputGoods = {...goods};
+            for(let i in goods) {
+                if(goods[i].commodity_id === action.payload.value._id) {
+                    outputGoods[i].thumb_up_num = action.payload.value.thumb_up_num;
+                }
+            }
+
+            //更新detail中的点赞值
+            outputDetail = {...JSON.parse(localStorage.getItem('detail'))};
+            outputDetail.thumb_up_num = action.payload.value.thumb_up_num;
+
+
+            localStorage.setItem('goodsList', JSON.stringify(outputGoods));
+            localStorage.setItem('detail', JSON.stringify(outputDetail));
+
+            return {...state, detail: outputDetail};
     }
     return state;
 };

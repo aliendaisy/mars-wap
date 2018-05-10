@@ -15,42 +15,38 @@ class DetailCard extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            isInterest: false,
-            isReserved: false
+            isInterest: this.props.thumb_up,
+            isJoin: this.props.join_in
         }
-
     }
-    toProduct() {
+    toProduct(ei,ci) {
         if(!this.props.isProduct) {
+            this.props.ShowDetail(ei,ci);
             this.context.router.history.push('/product');
         }
-
-        this.props.ShowDetail({...this.props});
     }
     handleChange(e) {
         // console.log(e) //e为input框里的值
 
 
     }
-    interestToggle(e) {
-        this.setState({isInterest: !this.state.isInterest});
-        console.log(e)
-
-        let fetch = thumbUp('',e);
-        // this.props.ThumbUp(fetch);
+    interestToggle(ci) {
+        let fetch = thumbUp(ci);
+        this.props.ThumbUp(fetch).then(() => {
+            this.setState({isInterest: !this.state.isInterest});
+        });
     }
     eventToggle(e) {
-        this.setState({isReserved: !this.state.isReserved});
         console.log(e)
     }
     render() {
-        let {imgUrl,name,heartNum,addr,time,price,eventId,commodityId} = this.props;
+        let {imgUrl,name,heartNum,addr,time,price,thumb_up,join_in,eventId,commodityId} = this.props;
         return(
             <div className="detail-card">
                 <div
                     className="img-container"
                     style={{background: `url(${imgUrl}) no-repeat`,}}
-                    onClick={this.toProduct.bind(this)}
+                    onClick={this.toProduct.bind(this,eventId,commodityId)}
                 >
                 </div>
                 <div className="info">
@@ -77,7 +73,7 @@ class DetailCard extends Component{
                         handleChange={this.handleChange.bind(this)}
                     />
                     <div
-                        className={this.state.isReserved ? "reserve-btn reserved" : "reserve-btn reserve"}
+                        className={this.props.join_in ? "reserve-btn reserved" : "reserve-btn reserve"}
                         onClick={this.eventToggle.bind(this,commodityId)}
                     >Reserved</div>
                 </div>

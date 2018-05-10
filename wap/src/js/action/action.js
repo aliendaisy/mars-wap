@@ -64,11 +64,10 @@ export const ThumbUp = (fetchJson) => async(dispatch, getState) => {
 };
 
 
-
-
 //显示详情页(同步action）
-export const ShowDetail = (detail) => ({
+export const ShowDetail = (ei,ci) => ({
     type: 'SHOW_DETAIL',
-    detail: detail
+    ei: ei,
+    ci: ci
 });
 

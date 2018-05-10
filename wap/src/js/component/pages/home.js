@@ -17,10 +17,6 @@ import {getEventType,getEventList} from "../functional/common";
 
 import {selectDateType} from '../../action/action';
 
-import {commonPath} from '../../reducer/reducer';
-
-const year = new Date().getFullYear();
-
 class Home extends Component{
     constructor(props) {
         super(props);
@@ -203,14 +199,16 @@ class Home extends Component{
                                         (
                                             <DetailCard
                                                 key={i}
-                                                imgUrl={`${commonPath}${res.context.url}`}
-                                                name={res.context.name}
-                                                heartNum={res.context.thumb_up_num}
+                                                imgUrl={res.imgUrl}
+                                                name={res.name}
+                                                heartNum={res.thumb_up_num}
                                                 addr={res.address}
-                                                time={`${year}.${this.state.week[this.state.dayIndex].date}-${res.start_time}-${res.end_time}`}
-                                                price={res.context.price}
+                                                time={res.time}
+                                                price={res.price}
                                                 eventId={res.event_id}
-                                                commodityId={res.context.commodity_id}
+                                                commodityId={res.commodity_id}
+                                                thumb_up={res.thumb_up}
+                                                join_in={res.join_in}
                                                 isProduct={false}
                                             />
                                         )

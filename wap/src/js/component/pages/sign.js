@@ -36,6 +36,7 @@ class Sign extends Component{
             this.props.Login(fetch).then(() => {
                 //resolve之后返回
                 if(this.props.user) {
+                    localStorage.setItem('email', this.refs.email.value);
                     window.location.href = '/'; //登录后强制刷新返回主页
                 }else{
                     Toast.info(this.props.errMsg, 1.5);
