@@ -73,7 +73,8 @@ export function getEventList(week,event,weekIndex,eventIndex) {
 }
 
 //获取事件详情
-export function getEventDetail(email, event_id, commodity_id) {
+export function getEventDetail(event_id, commodity_id) {
+    let email = localStorage.getItem('email');
     return new Promise(resolve => {
         fetchJson('/v1/user/getEventDetail', {email: email, event_id: event_id, commodity_id: commodity_id}, doc => {
             resolve(doc);

@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 
 import NumChange from '../functional/numChange';
 
-import {thumbUp} from "../functional/common";
-import {ShowDetail, ThumbUp} from '../../action/action';
+import {thumbUp, getEventDetail} from "../functional/common";
+import {ShowDetail, ThumbUp, GetEventDetail} from '../../action/action';
 
 
 class DetailCard extends Component{
@@ -21,7 +21,10 @@ class DetailCard extends Component{
     }
     toProduct(ei,ci) {
         if(!this.props.isProduct) {
-            this.props.ShowDetail(ei,ci);
+            let fetch = getEventDetail(ei, ci);
+            this.props.GetEventDetail(fetch);
+
+            this.props.ShowDetail(ei, ci);  //显示主页已有参数到详情页
             this.context.router.history.push('/product');
         }
     }
@@ -92,7 +95,7 @@ const mapStateToProps = (state,props) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return bindActionCreators({
-        ShowDetail, ThumbUp
+        ShowDetail, ThumbUp, GetEventDetail
     },dispatch);
 
 };

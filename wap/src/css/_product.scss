@@ -1,0 +1,40 @@
+.product{
+  .greyBg{
+    overflow: hidden;
+    background: #f4f4f4;
+    .label-thin{
+      @include label(1rem);
+      font-size: .32rem;
+      color: #969696;
+      .provider{
+        display: flex;
+        align-items: center;
+        color: #000;
+        img{
+          width: .6rem;
+          height: .6rem;
+          padding-right: .1rem;
+        }
+      }
+      a{
+        color: #969696;
+      }
+      .chat{
+        display: flex;
+        align-items: center;
+        span{
+          border: .02rem solid #969696;
+          padding: .08rem .12rem;
+          transform: scale(.5);
+        }
+      }
+      &:last-child{
+        margin-bottom: .2rem;
+      }
+    }
+  }
+  .describe{
+    width: 100%;
+    background: #fff;
+  }
+}

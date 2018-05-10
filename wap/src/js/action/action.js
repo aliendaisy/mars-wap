@@ -51,6 +51,18 @@ export const AuthCheck = () => async(dispatch, getState) => {
     });
 };
 
+//获取事件详情
+export const GetEventDetail = (fetchJson) => async(dispatch, getState) => {
+    let value = await Promise.resolve(fetchJson);
+
+    await dispatch({
+        type: 'GET_EVENT_DETAIL',
+        payload: {
+            value
+        }
+    });
+};
+
 //点赞事件
 export const ThumbUp = (fetchJson) => async(dispatch, getState) => {
     let value = await Promise.resolve(fetchJson);
@@ -63,6 +75,7 @@ export const ThumbUp = (fetchJson) => async(dispatch, getState) => {
     });
 };
 
+//加入事件
 
 //显示详情页(同步action）
 export const ShowDetail = (ei,ci) => ({
