@@ -1,10 +1,12 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
 
 import TopBar from '../items/topBar';
 
-import {AuthCheck} from "../../action/action";
+import {updateName, updateSignature} from "../functional/common";
+import {AuthCheck, UpdateInfo} from "../../action/action";
 import {commonPath} from '../../reducer/reducer';
 
 
@@ -35,7 +37,6 @@ class Profile extends Component{
                 name: this.props.user.user_name
             });
         }
-
     }
     editName() {
         this.setState({
@@ -52,12 +53,55 @@ class Profile extends Component{
         });
     }
     saveInfo() {
+        var fetch;
+        //修改昵称
+        if(this.state.infoType === 'name') {
+            fetch = updateName(this.state.name);
+            this.props.UpdateInfo(fetch).then(() => {
+                cb();
+            });
+        }
+        //修改签名
+        else{
+            fetch = updateSignature(this.state.signature);
+            this.props.UpdateInfo(fetch).then(() => {
+                cb();
+            });
+        }
 
+        //todo(更新接口信息)
+        let cb = () => {
+            this.setState({
+                isShow: false,
+                son: false
+            });
+        }
+    }
+    //获取子元素input的value值
+    getValue(e) {
+        console.log(e)
+
+        // if(this.state.infoType === 'name') {
+        //     this.setState({name: e});
+        // }else{
+        //     this.setState({signature: e});
+        // }
+    }
+    goBack() {
+        if(this.state.son) {
+            this.setState({
+                isShow: false,
+                son: false
+            });
+        }else{
+            this.context.router.history.goBack();
+        }
     }
     render() {
         return(
             <div className="profile">
                 <TopBar
+                    goBack={this.goBack.bind(this)}
                     isShow={this.state.isShow}
                     onClick={this.saveInfo.bind(this)}
                 />
@@ -80,6 +124,7 @@ class Profile extends Component{
                     sonShow={!this.state.son}
                     info={this.state.infoType === 'name' ? this.state.name : this.state.signature}
                     brief={this.state.infoType === 'name' ? "Change your name" : "Write something about me"}
+                    getValue={this.getValue.bind(this)}
                 />
             </div>
         )
@@ -87,11 +132,26 @@ class Profile extends Component{
 }
 
 class EditInfo extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: this.props.info
+        }
+    }
+    handleChange(e) {
+        this.setState({value: e.target.value});
+        this.props.getValue(e.target.value);
+    }
     render() {
+        console.log(this.props.info)
         return(
             <div className={this.props.sonShow ? "edit-info none" : "edit-info"}>
                 <div className="input-box">
-                    <input type="text" placeholder={this.props.info}/>
+                    <input
+                        type="text"
+                        value={this.state.value}
+                        onChange={this.handleChange.bind(this)}
+                    />
                 </div>
                 <p>{this.props.brief}</p>
             </div>
@@ -99,13 +159,17 @@ class EditInfo extends Component{
     }
 }
 
+Profile.contextTypes = {
+    router: PropTypes.object
+};
+
 const mapStateToProps = (state,props) => {
     console.log(state)
     return state;
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
     return bindActionCreators({
-        AuthCheck
+        AuthCheck, UpdateInfo
     },dispatch);
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

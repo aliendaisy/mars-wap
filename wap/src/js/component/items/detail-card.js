@@ -1,13 +1,12 @@
 import React,{Component} from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 
 import NumChange from '../functional/numChange';
 
-import {thumbUp, getEventDetail} from "../functional/common";
-import {ShowDetail, ThumbUp, GetEventDetail} from '../../action/action';
+import {thumbUp, getEventDetail, joinEvent} from "../functional/common";
+import {ShowDetail, ThumbUp, GetEventDetail, JoinEvent} from '../../action/action';
 
 
 class DetailCard extends Component{
@@ -40,8 +39,14 @@ class DetailCard extends Component{
             this.setState({isInterest: !this.state.isInterest});
         });
     }
-    eventToggle(e) {
-        console.log(e)
+    eventToggle(ei, ci) {
+        //当未加入事件时请求接口，否则不作处理
+        if(!this.state.isJoin) {
+            let fetch = joinEvent(ei, ci);
+            this.props.JoinEvent(fetch).then(() => {
+                this.setState({isJoin: !this.state.isJoin});
+            });
+        }
     }
     render() {
         let {imgUrl,name,heartNum,addr,time,price,thumb_up,join_in,eventId,commodityId} = this.props;
@@ -50,7 +55,7 @@ class DetailCard extends Component{
                 <div
                     className="img-container"
                     style={{background: `url(${imgUrl}) no-repeat`,}}
-                    onClick={this.toProduct.bind(this,eventId,commodityId)}
+                    onClick={this.toProduct.bind(this, eventId, commodityId)}
                 >
                 </div>
                 <div className="info">
@@ -59,7 +64,7 @@ class DetailCard extends Component{
                         <div>
                             <span
                                 className={this.state.isInterest ? "iconfont icon-full" : "iconfont icon-heart"}
-                                onClick={this.interestToggle.bind(this,commodityId)}>
+                                onClick={this.interestToggle.bind(this, commodityId)}>
                             </span>
                             <p className="heart">{heartNum}</p>
                             <span className="iconfont icon-share">
@@ -77,8 +82,8 @@ class DetailCard extends Component{
                         handleChange={this.handleChange.bind(this)}
                     />
                     <div
-                        className={this.props.join_in ? "reserve-btn reserved" : "reserve-btn reserve"}
-                        onClick={this.eventToggle.bind(this,commodityId)}
+                        className={this.state.isJoin ? "reserve-btn reserved" : "reserve-btn reserve"}
+                        onClick={this.eventToggle.bind(this, eventId, commodityId)}
                     >Reserved</div>
                 </div>
             </div>
@@ -96,7 +101,7 @@ const mapStateToProps = (state,props) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return bindActionCreators({
-        ShowDetail, ThumbUp, GetEventDetail
+        ShowDetail, ThumbUp, GetEventDetail, JoinEvent
     },dispatch);
 
 };

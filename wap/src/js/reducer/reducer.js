@@ -1,7 +1,6 @@
 import moment from 'moment';
 export const commonPath = "http://www.marstail.com:20000";
 
-
 const Reducer = (state={},action) => {
     let goods = state.goodsList ? state.goodsList : JSON.parse(localStorage.getItem('goodsList'));
     let output = {};
@@ -50,15 +49,18 @@ const Reducer = (state={},action) => {
         case "AUTH_CHECK":
 
             return {...state, user: action.payload.value.ownerInfo};
+        //获取事件详情信息
         case "GET_EVENT_DETAIL":
 
             output = {...state.detail};
             output.provider = action.payload.value.name;
             output.provider_avatar = `${commonPath}${action.payload.value.header}`;
             output.describe = action.payload.value.commodity.description;
+            output.join_list = action.payload.value.join_list;
+            console.log(output.join_list)
 
             localStorage.setItem('detail', JSON.stringify(output));
-            return {...state, detail: output}
+            return {...state, detail: output};
 
         //跳转详情页
         case "SHOW_DETAIL":
@@ -92,6 +94,30 @@ const Reducer = (state={},action) => {
             localStorage.setItem('detail', JSON.stringify(outputDetail));
 
             return {...state, detail: outputDetail};
+        //加入事件
+        case "JOIN_EVENT":
+            outputGoods = {...goods};
+            for(let i in goods) {
+                if(goods[i].commodity_id === action.payload.value.commodity_id) {
+                    //在接口请求resolve之后才会进reducer处理action，因此可以写为true
+                    outputGoods[i].join_in = true;
+                }
+            }
+
+            outputDetail = {...JSON.parse(localStorage.getItem('detail'))};
+            outputDetail.join_in = true;
+
+            localStorage.setItem('goodsList', JSON.stringify(outputGoods));
+            localStorage.setItem('detail', JSON.stringify(outputDetail));
+
+            return {...state, detail: outputDetail};
+        //更新个人信息
+        case "UPDATE_INFO":
+
+            console.log(action.payload.value)
+
+
+
     }
     return state;
 };

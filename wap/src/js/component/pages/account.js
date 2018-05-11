@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
 
 import Label from '../items/label';
 import TopBar from '../items/topBar';
@@ -40,10 +41,13 @@ class Account extends Component{
             });
         }
     }
+    goBack() {
+        this.context.router.history.goBack();
+    }
     render() {
         return(
             <div className="account">
-                <TopBar/>
+                <TopBar goBack={this.goBack.bind(this)}/>
                 <Link to="/profile">
                     <div className="label-fat">
                         <img src={this.state.avatar} alt="" className="img-box"/>
@@ -102,6 +106,10 @@ class Account extends Component{
         )
     }
 }
+
+Account.contextTypes = {
+    router: PropTypes.object
+};
 
 const mapStateToProps = (state,props) => {
     return state;

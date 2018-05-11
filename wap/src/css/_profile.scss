@@ -3,6 +3,7 @@
   p{
     font-size: .36rem;
     color: #878787;
+    line-height: 1rem;
   }
   .label-fat{
     @include label(1.6rem);
@@ -38,7 +39,7 @@
       border: none;
       border-bottom: 2px solid #009688;
       font-size: .36rem;
-      color: #878787;
+      color: #000;
       outline: none;
     }
   }

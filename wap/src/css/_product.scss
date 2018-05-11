@@ -28,6 +28,27 @@
           transform: scale(.5);
         }
       }
+      .join-list-box{
+        width: 71%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .join-list{
+          overflow: auto;
+          display: flex;
+          align-items: center;
+          &::-webkit-scrollbar{
+            display: none;
+          }
+          img{
+            width: .6rem;
+            min-width: .6rem;
+            height: .6rem;
+            padding-right: .3rem;
+          }
+        }
+      }
       &:last-child{
         margin-bottom: .2rem;
       }

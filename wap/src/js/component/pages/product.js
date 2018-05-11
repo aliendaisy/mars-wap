@@ -6,9 +6,7 @@ import {bindActionCreators} from 'redux';
 import Header from '../items/header';
 import DetailCard from '../items/detail-card';
 
-import {getEventDetail} from '../functional/common';
-import {GetEventDetail} from '../../action/action';
-
+import {commonPath} from '../../reducer/reducer';
 
 class Product extends Component{
     constructor(props) {
@@ -56,7 +54,18 @@ class Product extends Component{
                     </div>
                     <div className="label-thin">
                         <p>Who is in</p>
-                        <span className="iconfont icon-right"></span>
+                        <div className="join-list-box">
+                            <div className="join-list">
+                                {(() => {
+                                    if(detail.join_list && detail.join_list.length > 0) {
+                                        return detail.join_list.map((res) => (
+                                            <img key={res.c_id} src={`${commonPath}${res.header}`} alt=""/>
+                                        ));
+                                    }
+                                })()}
+                            </div>
+                            <span className="iconfont icon-right"></span>
+                        </div>
                     </div>
                 </div>
 

@@ -76,6 +76,28 @@ export const ThumbUp = (fetchJson) => async(dispatch, getState) => {
 };
 
 //加入事件
+export const JoinEvent = (fetchJson) => async(dispatch, getState) => {
+    let value = await Promise.resolve(fetchJson);
+
+    await dispatch({
+        type: 'JOIN_EVENT',
+        payload: {
+            value
+        }
+    });
+};
+
+//修改昵称、签名
+export const UpdateInfo = (fetchJson) => async(dispatch, getState) => {
+    let value = await Promise.resolve(fetchJson);
+
+    await dispatch({
+        type: 'UPDATE_INFO',
+        payload: {
+            value
+        }
+    });
+};
 
 //显示详情页(同步action）
 export const ShowDetail = (ei,ci) => ({

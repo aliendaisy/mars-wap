@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 
+const email = localStorage.getItem('email');
 //fetch通信  POST通信
 export function fetchJson(url,params,cb){
     let myHeaders = new Headers({"Content-Type": "application/json"});
@@ -74,7 +75,6 @@ export function getEventList(week,event,weekIndex,eventIndex) {
 
 //获取事件详情
 export function getEventDetail(event_id, commodity_id) {
-    let email = localStorage.getItem('email');
     return new Promise(resolve => {
         fetchJson('/v1/user/getEventDetail', {email: email, event_id: event_id, commodity_id: commodity_id}, doc => {
             resolve(doc);
@@ -84,9 +84,35 @@ export function getEventDetail(event_id, commodity_id) {
 
 //点赞事件
 export function thumbUp(commodity_id) {
-    let email = localStorage.getItem('email');
     return new Promise(resolve => {
         fetchJson('/v1/user/thumbUp', {email: email, commodity_id: commodity_id}, doc => {
+            resolve(doc);
+        });
+    });
+}
+
+//加入事件
+export function joinEvent(event_id, commodity_id) {
+    return new Promise(resolve => {
+        fetchJson('/v1/user/jionEvent', {email: email, event_id: event_id, commodity_id: commodity_id}, doc => {
+            resolve(doc);
+        });
+    });
+}
+
+//修改昵称
+export function updateName(name) {
+    return new Promise(resolve => {
+        fetchJson('/v1/user/update', {email: email, user_name: name}, doc => {
+            resolve(doc);
+        });
+    });
+}
+
+//修改签名
+export function updateSignature(signature) {
+    return new Promise(resolve => {
+        fetchJson('/v1/user/update', {email: email, signature: signature}, doc => {
             resolve(doc);
         });
     });
