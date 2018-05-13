@@ -1,0 +1,43 @@
+.agreement{
+  article{
+    background: #fff;
+    width: 100%;
+    padding: .4rem .6rem;
+    margin-top: .2rem;
+    box-sizing: border-box;
+    header{
+      padding-bottom: .4rem;
+      h3{
+        font-size: .44rem;
+        text-align: center;
+        padding: .2rem 0;
+      }
+      p{
+        font-size: .28rem;
+        text-align: right;
+      }
+    }
+    section{
+      font-size: .32rem;
+      .caption{
+        font-size: .34rem;
+        font-weight: bold;
+        padding: .2rem 0;
+      }
+      p,li{
+        line-height: .5rem;
+        list-style: inside;
+        &.paragraph{
+          padding: .2rem 0;
+        }
+        .email-address{
+          color: dodgerblue;
+        }
+      }
+      strong{
+        display: block;
+        padding: .1rem 0;
+      }
+    }
+  }
+}

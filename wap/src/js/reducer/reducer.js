@@ -3,6 +3,7 @@ export const commonPath = "http://www.marstail.com:20000";
 
 const Reducer = (state={},action) => {
     let goods = state.goodsList ? state.goodsList : JSON.parse(localStorage.getItem('goodsList'));
+    let user = state.user ? state.user : JSON.parse(localStorage.getItem('user'));
     let output = {};
     let outputGoods = {};
     let outputDetail = {};
@@ -36,8 +37,16 @@ const Reducer = (state={},action) => {
         case "LOGIN":
             if(action.payload.value.ownerInfo) {
                 let token = action.payload.value.ownerInfo.token;
-                localStorage.setItem('token', token);
-                return {...state, user: action.payload.value.ownerInfo};
+                let output = {
+                    user_name: action.payload.value.ownerInfo.user_name,
+                    signature: action.payload.value.ownerInfo.signature,
+                    avatar: `${commonPath}${action.payload.value.ownerInfo.header}`
+                };
+                localStorage.setItem('user', JSON.stringify(output));
+                localStorage.setItem('token', token); //index.js校验登录用
+
+                return {...state, user: output};
+
             }else{
                 return {...state, errMsg: action.payload.value};
             }
@@ -114,9 +123,14 @@ const Reducer = (state={},action) => {
         //更新个人信息
         case "UPDATE_INFO":
 
-            console.log(action.payload.value)
+            let output = {...user};
 
+            output.user_name = action.payload.value.user_name;
+            output.signature = action.payload.value.signature;
 
+            localStorage.setItem('user', JSON.stringify(output));
+
+            return {...state, user: output};
 
     }
     return state;

@@ -443,4 +443,36 @@ body, div {
   color: #878787;
   line-height: .5rem; }
 
+.agreement article {
+  background: #fff;
+  width: 100%;
+  padding: .4rem .6rem;
+  margin-top: .2rem;
+  box-sizing: border-box; }
+.agreement article header {
+  padding-bottom: .4rem; }
+.agreement article header h3 {
+  font-size: .44rem;
+  text-align: center;
+  padding: .2rem 0; }
+.agreement article header p {
+  font-size: .28rem;
+  text-align: right; }
+.agreement article section {
+  font-size: .32rem; }
+.agreement article section .caption {
+  font-size: .34rem;
+  font-weight: bold;
+  padding: .2rem 0; }
+.agreement article section p, .agreement article section li {
+  line-height: .5rem;
+  list-style: inside; }
+.agreement article section p.paragraph, .agreement article section li.paragraph {
+  padding: .2rem 0; }
+.agreement article section p .email-address, .agreement article section li .email-address {
+  color: dodgerblue; }
+.agreement article section strong {
+  display: block;
+  padding: .1rem 0; }
+
 /*# sourceMappingURL=index.css.map */

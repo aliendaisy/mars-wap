@@ -12,6 +12,13 @@ import Account from './js/component/pages/account';
 import Profile from './js/component/pages/profile';
 import Sign from './js/component/pages/sign';
 import Download from './js/component/pages/download';
+
+import AboutUs from './js/component/staticPages/aboutUs';
+import Partner from './js/component/staticPages/partner';
+import Privacy from './js/component/staticPages/privacy';
+// import Download from './js/component/pages/download';
+
+
 import {fetchJson} from './js/component/functional/common';
 import store from './js/store/store'
 
@@ -52,15 +59,15 @@ export class Root extends React.Component{
             <Router>
                 <Switch>
                     <Route path="/" exact component={Home}/>
-                    {/*<Route path="/account" render={() => {*/}
-                        {/*return this.state.auth ? <Account/> :*/}
-                            {/*<Redirect to={{pathname: '/sign', state: {from: '/account'}}}/>*/}
-                    {/*}}/>*/}
                     <PrivateRoute path="/product" component={Product}/>
                     <PrivateRoute path="/account" component={Account}/>
                     <PrivateRoute path="/profile" component={Profile}/>
                     <Route path="/sign" component={Sign}/>
                     <Route path="/download" component={Download}/>
+
+                    <Route path="/aboutUs" component={AboutUs}/>
+                    <Route path="/partner" component={Partner}/>
+                    <Route path="/privacy" component={Privacy}/>
                 </Switch>
             </Router>
         )
@@ -71,15 +78,15 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         {...rest}
         render={props =>
             authFlag ? (
-                    <Component {...props} />
-                ) : (
-                    <Redirect
-                        to={{
-                            pathname: "/sign",
-                            state: { from: props.location }
-                        }}
-                    />
-                )
+                <Component {...props} />
+            ) : (
+                <Redirect
+                    to={{
+                        pathname: "/sign",
+                        state: {from: props.location}
+                    }}
+                />
+            )
         }
     />
 );

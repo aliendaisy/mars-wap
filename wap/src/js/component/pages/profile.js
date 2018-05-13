@@ -7,8 +7,9 @@ import TopBar from '../items/topBar';
 
 import {updateName, updateSignature} from "../functional/common";
 import {AuthCheck, UpdateInfo} from "../../action/action";
-import {commonPath} from '../../reducer/reducer';
 
+import {Toast} from "antd-mobile";
+import 'antd-mobile/lib/toast/style/css.js'; //获取样式
 
 class Profile extends Component{
     constructor(props) {
@@ -18,26 +19,19 @@ class Profile extends Component{
             son: false,  //是否显示编辑内容的标识
             tokenUse: true,
             infoType: 'name',
-            name: 'M',
-            signature: 'Something about me'
+            name: '',
+            signature: ''
         }
     }
     componentDidMount() {
-        //登录验证
-        if(!this.props.user) {
-            this.props.AuthCheck().then(() => {
-                this.setState({
-                    avatar: `${commonPath}${this.props.user.header}`,
-                    name: this.props.user.user_name
-                });
-            });
-        }else{
-            this.setState({
-                avatar: `${commonPath}${this.props.user.header}`,
-                name: this.props.user.user_name
-            });
-        }
+        //初始化input里的值
+        this.setState({
+            name: this.user.user_name,
+            signature: this.user.signature
+        });
     }
+
+    //显示编辑info部分
     editName() {
         this.setState({
             isShow: true,
@@ -52,6 +46,16 @@ class Profile extends Component{
             infoType: 'signature'
         });
     }
+
+    //修改info
+    changeName(e) {
+        this.setState({name: e.target.value});
+    }
+    changeSignature(e) {
+        this.setState({signature: e.target.value});
+    }
+
+    //保存
     saveInfo() {
         var fetch;
         //修改昵称
@@ -69,27 +73,22 @@ class Profile extends Component{
             });
         }
 
-        //todo(更新接口信息)
         let cb = () => {
             this.setState({
                 isShow: false,
                 son: false
             });
+            Toast.info('Saved success!', 2);
         }
     }
-    //获取子元素input的value值
-    getValue(e) {
-        console.log(e)
-
-        // if(this.state.infoType === 'name') {
-        //     this.setState({name: e});
-        // }else{
-        //     this.setState({signature: e});
-        // }
-    }
+    //返回
     goBack() {
+        console.log(this.user)
         if(this.state.son) {
             this.setState({
+                //返回时 初始化info编辑部分的值
+                name: this.user.user_name,
+                signature: this.user.signature,
                 isShow: false,
                 son: false
             });
@@ -98,6 +97,7 @@ class Profile extends Component{
         }
     }
     render() {
+        this.user = this.props.user ? this.props.user : JSON.parse(localStorage.getItem('user'));
         return(
             <div className="profile">
                 <TopBar
@@ -108,63 +108,59 @@ class Profile extends Component{
                 <div className={this.state.son ? "label-box none" : "label-box"}>
                     <div className="label-fat">
                         <p>Profile photo</p>
-                        <img src={this.state.avatar} alt="" className="img-box"/>
+                        <img src={this.user.avatar} alt="" className="img-box"/>
                     </div>
                     <div className="label-thin" onClick={this.editName.bind(this)}>
                         <p>Name</p>
-                        <p>{this.state.name}</p>
+                        <p>{this.user.user_name}</p>
                     </div>
                     <div className="label-thin" onClick={this.editSignature.bind(this)}>
                         <p>Signature</p>
-                        <p className="signature">{this.state.signature}</p>
+                        <p className="signature">{this.user.signature}</p>
                     </div>
                 </div>
 
-                <EditInfo
-                    sonShow={!this.state.son}
-                    info={this.state.infoType === 'name' ? this.state.name : this.state.signature}
-                    brief={this.state.infoType === 'name' ? "Change your name" : "Write something about me"}
-                    getValue={this.getValue.bind(this)}
-                />
+                {/*显示修改昵称/签名*/}
+                {(() => {
+                    if(this.state.infoType === 'name') {
+                        return(
+                            <div className={!this.state.son ? "edit-info none" : "edit-info"}>
+                                <div className="input-box">
+                                    <input
+                                        type="text"
+                                        value={this.state.name}
+                                        onChange={this.changeName.bind(this)}
+                                    />
+                                </div>
+                                <p>{"Change your name"}</p>
+                            </div>
+                        )
+                    }else{
+                        return(
+                            <div className={!this.state.son ? "edit-info none" : "edit-info"}>
+                                <div className="input-box">
+                                    <input
+                                        type="text"
+                                        value={this.state.signature}
+                                        onChange={this.changeSignature.bind(this)}
+                                    />
+                                </div>
+                                <p>{"Write something about me"}</p>
+                            </div>
+                        )
+                    }
+                })()}
             </div>
         )
     }
 }
 
-class EditInfo extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: this.props.info
-        }
-    }
-    handleChange(e) {
-        this.setState({value: e.target.value});
-        this.props.getValue(e.target.value);
-    }
-    render() {
-        console.log(this.props.info)
-        return(
-            <div className={this.props.sonShow ? "edit-info none" : "edit-info"}>
-                <div className="input-box">
-                    <input
-                        type="text"
-                        value={this.state.value}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                </div>
-                <p>{this.props.brief}</p>
-            </div>
-        )
-    }
-}
 
 Profile.contextTypes = {
     router: PropTypes.object
 };
 
 const mapStateToProps = (state,props) => {
-    console.log(state)
     return state;
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -52,21 +52,23 @@ class Product extends Component{
                             <p className="chat">Chat<span className="iconfont icon-minus"></span></p>
                         </Link>
                     </div>
-                    <div className="label-thin">
-                        <p>Who is in</p>
-                        <div className="join-list-box">
-                            <div className="join-list">
-                                {(() => {
-                                    if(detail.join_list && detail.join_list.length > 0) {
-                                        return detail.join_list.map((res) => (
-                                            <img key={res.c_id} src={`${commonPath}${res.header}`} alt=""/>
-                                        ));
-                                    }
-                                })()}
+                    <Link to="/download">
+                        <div className="label-thin">
+                            <p>Who is in</p>
+                            <div className="join-list-box">
+                                <div className="join-list">
+                                    {(() => {
+                                        if(detail.join_list && detail.join_list.length > 0) {
+                                            return detail.join_list.map((res) => (
+                                                <img key={res.c_id} src={`${commonPath}${res.header}`} alt=""/>
+                                            ));
+                                        }
+                                    })()}
+                                </div>
+                                <span className="iconfont icon-right"></span>
                             </div>
-                            <span className="iconfont icon-right"></span>
                         </div>
-                    </div>
+                    </Link>
                 </div>
 
                 <div className="describe">
