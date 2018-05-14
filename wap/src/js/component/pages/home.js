@@ -22,7 +22,7 @@ class Home extends Component{
         super(props);
         this.state = {
             imgHeight: '3.2rem',
-            data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
+            data: ['1', '2', '3', '4'], //存放图片的数组
             week: [], //日期数组
             category: [], //事件数组
             dayIndex: 0,
@@ -115,7 +115,7 @@ class Home extends Component{
                                 <img
                                     key={val}
                                     style={{height: this.state.imgHeight}}
-                                    src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
+                                    src={require(`../../../images/${val}.jpeg`)}
                                     alt=""
                                     onLoad={() => {
                                         // fire window resize event to change height

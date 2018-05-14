@@ -464,15 +464,32 @@ body, div {
   font-size: .34rem;
   font-weight: bold;
   padding: .2rem 0; }
-.agreement article section p, .agreement article section li {
+.agreement article section p {
+  line-height: .5rem; }
+.agreement article section p.paragraph {
+  padding: .2rem 0; }
+.agreement article section p .email-address {
+  color: dodgerblue; }
+.agreement article section ul.roman li {
+  list-style: upper-roman inside; }
+.agreement article section ul.alpha li {
+  list-style: upper-alpha inside; }
+.agreement article section ul li {
+  padding: .1rem 0;
   line-height: .5rem;
   list-style: inside; }
-.agreement article section p.paragraph, .agreement article section li.paragraph {
+.agreement article section ul li.paragraph {
   padding: .2rem 0; }
-.agreement article section p .email-address, .agreement article section li .email-address {
+.agreement article section ul li .email-address {
   color: dodgerblue; }
 .agreement article section strong {
   display: block;
   padding: .1rem 0; }
+.agreement article footer {
+  text-align: center;
+  font-size: .28rem;
+  padding-top: .8rem; }
+.agreement article .bold {
+  font-weight: bold; }
 
 /*# sourceMappingURL=index.css.map */

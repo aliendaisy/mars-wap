@@ -315,7 +315,7 @@ class Privacy extends Component {
                         </p>
                     </section>
                     <section>
-                        <div className="caption">10. MODIFICATIONS TO THIS PRIVACY POLICY</div>
+                        <div className="caption">9. MODIFICATIONS TO THIS PRIVACY POLICY</div>
                         <p className="paragraph">
                             We may revise this Privacy Policy from time to time. The most current version of the
                             Privacy Policy will govern our collection, use, and disclosure of information about

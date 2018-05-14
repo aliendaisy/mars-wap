@@ -61,8 +61,12 @@ class Account extends Component{
                     <Link to="/partner">
                         <Label className="label-thin" leftText={"Partnership Program"}/>
                     </Link>
-                    <Label className="label-thin" leftText={"Contact Us"}/>
-                    <Label className="label-thin" leftText={"Term of Use"}/>
+                    <Link to="/download">
+                        <Label className="label-thin" leftText={"Contact Us"}/>
+                    </Link>
+                    <Link to="/term">
+                        <Label className="label-thin" leftText={"Term of Use"}/>
+                    </Link>
                     <Link to="/privacy">
                         <Label className="label-thin" leftText={"Privacy Policy"}/>
                     </Link>

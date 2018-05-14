@@ -16,7 +16,7 @@ import Download from './js/component/pages/download';
 import AboutUs from './js/component/staticPages/aboutUs';
 import Partner from './js/component/staticPages/partner';
 import Privacy from './js/component/staticPages/privacy';
-// import Download from './js/component/pages/download';
+import Term from './js/component/staticPages/term';
 
 
 import {fetchJson} from './js/component/functional/common';
@@ -68,6 +68,7 @@ export class Root extends React.Component{
                     <Route path="/aboutUs" component={AboutUs}/>
                     <Route path="/partner" component={Partner}/>
                     <Route path="/privacy" component={Privacy}/>
+                    <Route path="/term" component={Term}/>
                 </Switch>
             </Router>
         )
