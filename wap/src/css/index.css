@@ -51,7 +51,7 @@ body, div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 .46rem;
+  padding: 0 .3rem;
   box-sizing: border-box;
   width: 100%;
   height: .76rem;
@@ -64,13 +64,16 @@ body, div {
   display: flex;
   align-items: center; }
 .header .logo + div .download {
-  padding-right: .2rem;
-  border-right: .01rem solid #ccc;
   font-size: .28rem; }
+.header .logo + div .orderIcon {
+  padding-right: .2rem;
+  border-right: .01rem solid #ccc; }
 .header .logo + div .iconfont {
   padding-left: .2rem; }
 .header a {
   color: #000; }
+.header .am-badge-text {
+  transform: translateX(-120%); }
 
 .detail-card .img-container {
   width: 100%;
@@ -297,15 +300,14 @@ body, div {
   height: calc(100% - .8rem);
   background: #fff; }
 .edit-info .input-box {
-  width: 100%;
-  height: 1rem; }
+  margin: 0 .3rem;
+  height: 1rem;
+  border-bottom: 2px solid #009688; }
 .edit-info .input-box input {
   display: block;
   width: 6.9rem;
   height: 100%;
-  margin: 0 .3rem;
   border: none;
-  border-bottom: 2px solid #009688;
   font-size: .36rem;
   color: #000;
   outline: none; }
@@ -318,13 +320,18 @@ body, div {
 
 .sign {
   padding-top: 1.68rem; }
-.sign img.rounded {
+.sign .rounded {
   display: block;
   width: 2.16rem;
   height: 2.16rem;
+  line-height: 2.16rem;
   margin: 0 auto;
   border-radius: 50%;
-  border: 1px solid #878787; }
+  border: 1px solid #878787;
+  text-align: center;
+  color: #009688;
+  font-size: .88rem;
+  background: #fff; }
 .sign .commit-area {
   padding-top: .54rem;
   display: flex;
@@ -339,7 +346,7 @@ body, div {
   text-align: center; }
 .sign .commit-area input {
   font-size: .28rem;
-  color: #878787;
+  color: #000;
   border: 1px solid #878787; }
 .sign .commit-area .commit-btn {
   background: #009688;
@@ -347,6 +354,11 @@ body, div {
   color: #fff; }
 .sign .commit-area .service {
   font-size: .24rem; }
+.sign .commit-area .service a {
+  color: #000;
+  display: inline-block; }
+.sign .commit-area .service a span {
+  color: #000; }
 .sign .commit-area .service span {
   color: #878787; }
 
@@ -442,6 +454,12 @@ body, div {
   font-size: .32rem;
   color: #878787;
   line-height: .5rem; }
+
+.order .isCenter {
+  padding-top: 4.26rem;
+  text-align: center;
+  font-size: .36rem;
+  color: #878787; }
 
 .agreement article {
   background: #fff;

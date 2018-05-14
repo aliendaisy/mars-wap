@@ -12,11 +12,13 @@ import Account from './js/component/pages/account';
 import Profile from './js/component/pages/profile';
 import Sign from './js/component/pages/sign';
 import Download from './js/component/pages/download';
+import Order from './js/component/pages/order';
 
 import AboutUs from './js/component/staticPages/aboutUs';
 import Partner from './js/component/staticPages/partner';
 import Privacy from './js/component/staticPages/privacy';
 import Term from './js/component/staticPages/term';
+import NotFound from './js/component/staticPages/notFound';
 
 
 import {fetchJson} from './js/component/functional/common';
@@ -62,6 +64,7 @@ export class Root extends React.Component{
                     <PrivateRoute path="/product" component={Product}/>
                     <PrivateRoute path="/account" component={Account}/>
                     <PrivateRoute path="/profile" component={Profile}/>
+                    <PrivateRoute path="/order" component={Order}/>
                     <Route path="/sign" component={Sign}/>
                     <Route path="/download" component={Download}/>
 
@@ -69,6 +72,9 @@ export class Root extends React.Component{
                     <Route path="/partner" component={Partner}/>
                     <Route path="/privacy" component={Privacy}/>
                     <Route path="/term" component={Term}/>
+
+                    <Route path="/404" component={NotFound}/>
+                    <Redirect from="*" to="/404"/>
                 </Switch>
             </Router>
         )

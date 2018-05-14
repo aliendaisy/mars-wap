@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 
 
 class Term extends Component {
+    componentWillMount() {
+        document.body.style.background = '#f4f4f4';
+    }
     goBack() {
         this.context.router.history.goBack();
     }

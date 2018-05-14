@@ -3,13 +3,14 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 
+import {Toast} from "antd-mobile";
+import 'antd-mobile/lib/toast/style/css.js'; //获取样式
+
 import TopBar from '../items/topBar';
 
 import {updateName, updateSignature} from "../functional/common";
-import {AuthCheck, UpdateInfo} from "../../action/action";
 
-import {Toast} from "antd-mobile";
-import 'antd-mobile/lib/toast/style/css.js'; //获取样式
+import {AuthCheck, UpdateInfo} from "../../action/action";
 
 class Profile extends Component{
     constructor(props) {

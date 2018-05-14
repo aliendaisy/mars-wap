@@ -1,5 +1,8 @@
 import 'whatwg-fetch';
 
+import {Toast} from "antd-mobile";
+import 'antd-mobile/lib/toast/style/css.js'; //获取样式
+
 const email = localStorage.getItem('email');
 //fetch通信  POST通信
 export function fetchJson(url,params,cb){
@@ -18,13 +21,22 @@ export function fetchJson(url,params,cb){
         if(json.result === "success" || json.message === "success") {
             return cb(json.data);
         }else{
+            Toast.info(json.message);
             return cb(json.message);
         }
     }).catch(err => {
-        console.log(err);
+        Toast.info(err, 1.5);
     });
 }
 
+//注册
+export function signUp(email, pwd) {
+    return new Promise(resolve => {
+        fetchJson('/mobile/owner/register', {email: email, password: pwd, zipCode: ''}, doc => {
+            resolve(doc);
+        })
+    })
+}
 
 //登录
 export function login(email, pwd) {

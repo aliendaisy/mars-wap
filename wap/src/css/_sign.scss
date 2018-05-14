@@ -1,12 +1,17 @@
 .sign{
   padding-top: 1.68rem;
-  img.rounded{
+  .rounded{
     display: block;
     width: 2.16rem;
     height: 2.16rem;
+    line-height: 2.16rem;
     margin: 0 auto;
     border-radius: 50%;
     border: 1px solid #878787;
+    text-align: center;
+    color: #009688;
+    font-size: .88rem;
+    background: #fff;
   }
   .commit-area{
     padding-top: .54rem;
@@ -23,7 +28,7 @@
     }
     input{
       font-size: .28rem;
-      color: #878787;
+      color: #000;
       border: 1px solid #878787;
     }
     .commit-btn{
@@ -33,6 +38,13 @@
     }
     .service{
       font-size: .24rem;
+      a{
+        color: #000;
+        display: inline-block;
+        span{
+          color: #000;
+        }
+      }
       span{
         color: #878787;
       }

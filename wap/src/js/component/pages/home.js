@@ -239,13 +239,9 @@ const mapStateToProps = (state,props) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    // selectDate: (dispatch,getDate) => {
-    //     dispatch(selectDate((dispatch,getDate)));
-    // }
     return bindActionCreators({
         selectDateType
     },dispatch);
-
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);

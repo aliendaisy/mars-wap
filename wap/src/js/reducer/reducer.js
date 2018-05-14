@@ -46,10 +46,8 @@ const Reducer = (state={},action) => {
                 localStorage.setItem('token', token); //index.js校验登录用
 
                 return {...state, user: output};
-
-            }else{
-                return {...state, errMsg: action.payload.value};
             }
+            break;
         //注册 todo
         case "SIGN_UP":
 

@@ -1,20 +1,23 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {Toast} from "antd-mobile";
 import 'antd-mobile/lib/toast/style/css.js'; //获取样式
 
-import {Login,Signup} from "../../action/action";
-import {login} from "../functional/common";
+import {login,signUp} from "../functional/common";
 
+import {Login,SignUp} from "../../action/action";
 
 class Sign extends Component{
     constructor(props) {
         super(props);
         this.state = {
             isSignUp: false
-        }
+        };
+        this.emailReg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
+
     }
     componentWillMount() {
         document.body.style.background = '#fff';
@@ -23,34 +26,57 @@ class Sign extends Component{
 
     }
     email() {
-        let reg = /^(\w+)(\.\w+)*@(\w+)(\.\w+)*.(\w+)$/i;
+
     }
     pwd() {
         console.log('pwd',this.refs.pwd.value)
     }
+    //登录
     signin() {
-        if(this.refs.email.value && this.refs.pwd.value) {
-
-            let fetch = login(this.refs.email.value, this.refs.pwd.value);
-            //dispatch action 进入reducer处理登录事件
-            this.props.Login(fetch).then(() => {
-                //resolve之后返回
-                if(this.props.user) {
-                    localStorage.setItem('email', this.refs.email.value);
-                    window.location.href = '/'; //登录后强制刷新返回主页
-                }else{
-                    Toast.info(this.props.errMsg, 1.5);
-                }
-            });
-
+        let email = this.refs.email.value;
+        let pwd = this.refs.pwd.value;
+        if(email && pwd ) {
+            if(this.emailReg.test(email)) {
+                let fetch = login(email, pwd);
+                //dispatch action 进入reducer处理登录事件
+                this.props.Login(fetch).then(() => {
+                    //resolve之后返回
+                    if(this.props.user) {
+                        localStorage.setItem('email', email);
+                        window.location.href = '/'; //登录后强制刷新返回主页
+                    }
+                });
+            }else{
+                Toast.info('Please enter the right email address!', 1.5);
+            }
         }else{
-            Toast.info('Please enter your information.', 1.5)
+            Toast.info('Please enter your information.', 1.5);
+        }
+    }
+    //注册
+    signUp() {
+        let email = this.refs.email.value;
+        let pwd = this.refs.pwd.value;
+        if(email && pwd) {
+            if(this.emailReg.test(email)) {
+                let fetch = signUp(email, pwd);
+                this.props.SignUp(fetch).then(() => {
+                    console.log('11111')
+                    // this.signin();
+                });
+            }else{
+                Toast.info('Please enter the right email address!', 1.5);
+            }
+        }else{
+            Toast.info('Please enter your information.', 1.5);
         }
     }
     render() {
+        // let token = localStorage.getItem('token');
+        let token = null;
         return(
             <div className="sign">
-                <img src="" alt="" className="rounded"/>
+                <p className="rounded">M</p>
 
                 <div className="commit-area">
                     <input
@@ -70,8 +96,19 @@ class Sign extends Component{
                         className="commit-btn"
                         onClick={this.signin.bind(this)}
                     >Sign in</div>
-                    <div className={this.state.isSignUp ? 'commit-btn none' : 'commit-btn'}>New Account</div>
-                    <p className={this.state.isSignUp ? 'service none' : 'service'}>Terms of Service <span>&</span> Privacy Policy</p>
+                    <div
+                        className={token ? 'commit-btn none' : 'commit-btn'}
+                        onClick={this.signUp.bind(this)}
+                    >New Account</div>
+                    <p className={token ? 'service none' : 'service'}>
+                        <Link to="/term">
+                            <span>Terms of Service</span>
+                        </Link>
+                        <span> & </span>
+                        <Link to="/privacy">
+                            <span>Privacy Policy</span>
+                        </Link>
+                    </p>
                 </div>
             </div>
         )
@@ -83,7 +120,7 @@ const mapStateToProps = (state,props) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
     return bindActionCreators({
-        Login,Signup
+        Login,SignUp
     },dispatch);
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Sign);

@@ -28,8 +28,9 @@ export const Login = (fetchPost) => async(dispatch, getState) => {
 };
 
 //注册接口 todo
-export const Signup = (fetchPost) => async(dispatch, getState) => {
+export const SignUp = (fetchPost) => async(dispatch, getState) => {
     let value = await Promise.resolve(fetchPost);
+    await Promise.reject(fetchPost);
 
     await dispatch({
         type: 'SIGN_UP',
