@@ -1,8 +1,19 @@
 .order{
+  font-family: 'PingFang-SC';
   .isCenter{
     padding-top: 4.26rem;
     text-align: center;
     font-size: .36rem;
     color: #878787;
+  }
+  .time{
+    width: 100%;
+    height: .84rem;
+    line-height: .84rem;
+    padding: 0 .3rem;
+    border-bottom: .02rem solid #ebebeb;
+    box-sizing: border-box;
+    font-size: .48rem;
+    font-weight: bold;
   }
 }

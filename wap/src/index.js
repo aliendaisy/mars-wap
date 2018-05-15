@@ -20,43 +20,11 @@ import Privacy from './js/component/staticPages/privacy';
 import Term from './js/component/staticPages/term';
 import NotFound from './js/component/staticPages/notFound';
 
-
-import {fetchJson} from './js/component/functional/common';
-import store from './js/store/store'
+import store from './js/store/store';
 
 
-var authFlag;
 export class Root extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            auth: false, // 表示是否认证通过
-            hasAuthed: false  // 表示是否向服务器发送过认证请求
-        };
-    }
-
-    componentDidMount() {
-        let token = localStorage.getItem('token');
-        let auth = new Promise(resolve => {
-            fetchJson('/mobile/owner/tokenLogin', {token: token}, doc => {
-                resolve(doc);
-            });
-        });
-        auth.then((result) => {
-            if (result.ownerInfo) {
-                this.setState({auth: true, hasAuthed: true});
-            } else {
-                this.setState({auth: false, hasAuthed: true});
-            }
-        });
-    }
-
     render(){
-        // 初始渲染时，尚未向服务器发送认证请求，因此不渲染元素
-        if (!this.state.hasAuthed) {
-            return null;
-        }
-        authFlag = this.state.auth;
         return(
             <Router>
                 <Switch>
@@ -80,23 +48,28 @@ export class Root extends React.Component{
         )
     }
 }
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route
-        {...rest}
-        render={props =>
-            authFlag ? (
-                <Component {...props} />
-            ) : (
-                <Redirect
-                    to={{
-                        pathname: "/sign",
-                        state: {from: props.location}
-                    }}
-                />
-            )
-        }
-    />
-);
+
+//根据token是否存在进行跳转判断
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    const token = localStorage.getItem('token');
+    let auth = token ? true : false;
+
+    return(
+        <Route
+            {...rest}
+            render={props =>
+                        auth ? (<Component {...props} />) :
+                        (<Redirect
+                            to={{
+                                pathname: "/sign",
+                                state: {from: props.location}
+                            }}
+                        />)
+                    }
+
+        />
+    );
+};
 
 
 const root = document.getElementById('root');

@@ -10,7 +10,6 @@ import {ShowDetail, ThumbUp, GetEventDetail, JoinEvent} from '../../action/actio
 
 
 class DetailCard extends Component{
-
     constructor(props) {
         super(props);
         this.state = {

@@ -37,7 +37,7 @@ const Reducer = (state={},action) => {
         case "LOGIN":
             if(action.payload.value.ownerInfo) {
                 let token = action.payload.value.ownerInfo.token;
-                let output = {
+                output = {
                     user_name: action.payload.value.ownerInfo.user_name,
                     signature: action.payload.value.ownerInfo.signature,
                     avatar: `${commonPath}${action.payload.value.ownerInfo.header}`
@@ -52,10 +52,20 @@ const Reducer = (state={},action) => {
         case "SIGN_UP":
 
             return {...state};
-        //登录验证
+        //登录验证 todo(authcheck 没有用到)
         case "AUTH_CHECK":
+            console.log(action.payload.value);
 
-            return {...state, user: action.payload.value.ownerInfo};
+            let token = action.payload.value.ownerInfo.token;
+            output = {
+                user_name: action.payload.value.ownerInfo.user_name,
+                signature: action.payload.value.ownerInfo.signature,
+                avatar: `${commonPath}${action.payload.value.ownerInfo.header}`
+            };
+
+            localStorage.setItem('user', JSON.stringify(output));
+
+            return {...state, user: output};
         //获取事件详情信息
         case "GET_EVENT_DETAIL":
 

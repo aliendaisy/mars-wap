@@ -4,6 +4,7 @@ import {Toast} from "antd-mobile";
 import 'antd-mobile/lib/toast/style/css.js'; //获取样式
 
 const email = localStorage.getItem('email');
+
 //fetch通信  POST通信
 export function fetchJson(url,params,cb){
     let myHeaders = new Headers({"Content-Type": "application/json"});
@@ -58,7 +59,6 @@ export function tokenLogin() {
         });
     }
 }
-
 
 //获取事件类型
 export function getEventType() {

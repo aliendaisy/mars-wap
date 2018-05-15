@@ -13,7 +13,7 @@ import Header from '../items/header';
 import Loading from '../items/loading';
 import DetailCard from '../items/detail-card';
 
-import {getEventType,getEventList} from "../functional/common";
+import {getEventType, getEventList} from "../functional/common";
 
 import {selectDateType} from '../../action/action';
 
@@ -46,6 +46,7 @@ class Home extends Component{
     }
     componentDidMount() {
         let eventArr = [];
+
         getEventType().then(value => {
             let data = value.event_type_list;
             data.map(res => {
@@ -79,7 +80,6 @@ class Home extends Component{
     }
 
     render() {
-
         return(
             <div className="home">
                 <Header/>

@@ -10,7 +10,10 @@ class Order extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            orderList: []
+            orderList: [{
+                time: 'Monday, 08.08',
+                vendor: '商家1'
+            }]
         };
     }
     componentWillMount() {
@@ -24,9 +27,29 @@ class Order extends Component{
             <div className="order">
                 <TopBar goBack={this.goBack.bind(this)}/>
                 {(() => {
-                   if(this.state.orderList && this.state.orderList.length === 0) {
-                       return(<div className="isCenter">You don’t have any orders yet</div>)
-                   }
+                    //没有order数据显示
+                    if(this.state.orderList && this.state.orderList.length === 0) {
+                        return(<div className="isCenter">You don’t have any orders yet</div>)
+                    }
+                    //有order数据显示
+                    else{
+                        return(
+                            this.state.orderList.map((res,i) => (
+                                <div key={i}>
+                                    <div className="time">{res.time}</div>
+                                    <div className="vendor-box">
+                                        <div className="vendor">{res.vendor}</div>
+                                        <div className="orderGoods">
+
+                                        </div>
+                                    </div>
+                                    <div className="detail-box">
+
+                                    </div>
+                                </div>
+                            ))
+                        );
+                    }
                 })()}
             </div>
         )
