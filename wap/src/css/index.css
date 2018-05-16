@@ -495,10 +495,10 @@ body, div {
   padding: .2rem 0; }
 .agreement article section p {
   line-height: .5rem; }
-.agreement article section p.paragraph {
-  padding: .2rem 0; }
 .agreement article section p .email-address {
   color: dodgerblue; }
+.agreement article section .paragraph {
+  padding: .2rem 0; }
 .agreement article section ul.roman li {
   list-style: upper-roman inside; }
 .agreement article section ul.alpha li {

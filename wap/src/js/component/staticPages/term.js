@@ -203,7 +203,7 @@ class Term extends Component {
                             we encourage you to let us know if you believe another user has violated the Terms, we
                             reserve the right to investigate and take appropriate action at our sole discretion.
                         </p>
-                        <p className="paragraph">
+                        <div className="paragraph">
                             <strong>
                                 A.You agree not to, and will not assist, encourage, or enable others to use the Site to:
                             </strong>
@@ -227,11 +227,11 @@ class Term extends Component {
                                 <li>Solicit personal information from minors, or submit or transmit pornography; or</li>
                                 <li>Violate any applicable law.</li>
                             </ul>
-                        </p>
-                        <p className="paragraph">
+                        </div>
+                        <div className="paragraph">
                             <strong>B.You also agree not to, and will not assist, encourage, or enable others to:</strong>
 
-                            <p className="paragraph">
+                            <div className="paragraph">
                                 <ul className="roman">
                                     <li>Violate the Terms;</li>
                                     <li>
@@ -286,7 +286,7 @@ class Term extends Component {
                                         the use or copying of Site Content, or features that enforce limitations
                                         on the use of the Site.</li>
                                 </ul>
-                            </p>
+                            </div>
                             <p className="paragraph">
                                 The restrictions above only apply to the extent permissible under applicable law.
                                 Nevertheless, you agree not to act contrary to them (even if permissible under
@@ -295,7 +295,7 @@ class Term extends Component {
                                 opportunity to provide alternative remedies or otherwise accommodate you at our
                                 sole discretion.
                             </p>
-                        </p>
+                        </div>
                     </section>
                     <section>
                         <div className="caption">7.SUGGESTIONS AND IMPROVEMENTS</div>
@@ -390,7 +390,7 @@ class Term extends Component {
                             RELATED SERVICES, OR ANY OTHER GRIEVANCE SHALL BE YOUR TERMINATION AND DISCONTINUATION
                             OF ACCESS TO, OR USE OF THE SITE.
                         </p>
-                        <p className="paragraph">
+                        <div className="paragraph">
                             E.THE MARSTAIL ENTITIES' MAXIMUM AGGREGATE LIABILITY TO YOU FOR LOSSES OR DAMAGES THAT
                             YOU SUFFER IN CONNECTION WITH THE SITE OR THESE TERMS IS LIMITED TO THE GREATER OF
                             <p>
@@ -398,14 +398,14 @@ class Term extends Component {
                                 SITE IN THE 12 MONTHS PRIOR TO THE ACTION GIVING RISE TO LIABILITY, OR
                             </p>
                             <p>(ii) $25.</p>
-                        </p>
-                        <p className="paragraph">
+                        </div>
+                        <div className="paragraph">
                             F.THE MARSTAIL ENTITIES DISCLAIM LIABILITY FOR ANY
                             <p>(i) INDIRECT, SPECIAL, INCIDENTAL,PUNITIVE, EXEMPLARY, RELIANCE, OR CONSEQUENTIAL DAMAGES,</p>
                             <p>(ii) LOSS OF PROFITS,</p>
                             <p>(iii) BUSINESS INTERRUPTION,</p>
                             <p>(iv) REPUTATIONAL HARM, OR (v) LOSS OF INFORMATION OR DATA.</p>
-                        </p>
+                        </div>
                     </section>
                     <section>
                         <div className="caption">11.CHOICE OF LAW AND VENUE</div>
@@ -421,7 +421,7 @@ class Term extends Component {
                     <section>
                         <div className="caption">12.TERMINATION</div>
 
-                        <p className="paragraph">
+                        <div className="paragraph">
                             <ul className="alpha">
                                 <li>
                                     We may close your account, suspend your ability to use certain portions of the
@@ -435,11 +435,11 @@ class Term extends Component {
                                     Your Content as detailed in Section 5.
                                 </li>
                             </ul>
-                        </p>
+                        </div>
                     </section>
                     <section>
                         <div className="caption">13.GENERAL TERMS</div>
-                        <p className="paragraph">
+                        <div className="paragraph">
                             <ul className="alpha">
                                 <li>
                                     We reserve the right to modify, update, or discontinue the Site at our sole
@@ -482,7 +482,7 @@ class Term extends Component {
                                     or contractual effect.
                                 </li>
                             </ul>
-                        </p>
+                        </div>
                     </section>
                     <footer>Copyright © 2018 MARSTAIL Inc., </footer>
                 </article>

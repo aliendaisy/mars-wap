@@ -26,12 +26,12 @@
       }
       p{
         line-height: .5rem;
-        &.paragraph{
-          padding: .2rem 0;
-        }
         .email-address{
           color: dodgerblue;
         }
+      }
+      .paragraph{
+        padding: .2rem 0;
       }
       ul{
         &.roman{
