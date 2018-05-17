@@ -48,16 +48,23 @@
     @extend .week-list-box;
     height: .86rem;
     border: none;
+    background: #f4f4f4;
     .category-list{
       @extend .week-list;
       width: 100%;
+      height: .76rem;
+      background: #fff;
+      position: relative;
       li{
-        border-bottom: .1rem solid #f4f4f4;
         font-size: .4rem;
       }
-      li.active{
-          border-bottom: .1rem solid #009688;
-      }
+    }
+    .category-line{
+      width: 17%;
+      height: .1rem;
+      position: absolute;
+      background: #009688;
+      transition: left linear .2s;
     }
   }
 }

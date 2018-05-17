@@ -38,7 +38,18 @@ body,div{
   bottom: 0;
   margin: auto;
 }
+.notFound{
+  width: 7.5rem;
+  height: 7.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
 
+//antd
 .slider-decorator-0{
   height: .8rem;
 }
@@ -48,6 +59,7 @@ body,div{
   justify-content: center;
   align-items: center;
 }
+
 
 @mixin label($height) {
   display: flex;

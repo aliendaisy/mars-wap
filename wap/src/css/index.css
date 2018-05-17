@@ -38,6 +38,16 @@ body, div {
   bottom: 0;
   margin: auto; }
 
+.notFound {
+  width: 7.5rem;
+  height: 7.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto; }
+
 .slider-decorator-0 {
   height: .8rem; }
 
@@ -176,14 +186,21 @@ body, div {
   color: #009688; }
 .home .category-list-box {
   height: .86rem;
-  border: none; }
+  border: none;
+  background: #f4f4f4; }
 .home .category-list-box .category-list {
-  width: 100%; }
+  width: 100%;
+  height: .76rem;
+  background: #fff;
+  position: relative; }
 .home .category-list-box .category-list li {
-  border-bottom: .1rem solid #f4f4f4;
   font-size: .4rem; }
-.home .category-list-box .category-list li.active {
-  border-bottom: .1rem solid #009688; }
+.home .category-list-box .category-line {
+  width: 17%;
+  height: .1rem;
+  position: absolute;
+  background: #009688;
+  transition: left linear .2s; }
 
 .topBar {
   position: relative;

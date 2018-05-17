@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
-import TopBar from '../items/topBar';
-import PropTypes from 'prop-types';
 
 class NotFound extends Component{
+    componentWillMount() {
+        document.body.style.background = '#fff';
+    }
     render() {
         return(
             <div>
-                404
+                <img src={require("../../../images/404.png")} alt="" className="notFound"/>
             </div>
         )
     }

@@ -19,7 +19,7 @@ class Header extends Component{
                     </Link>
                     <Link to="/order">
                         <Badge text={this.props.badge}>
-                            <span className="iconfont icon-cart orderIcon"></span>
+                            <span className="iconfont icon-order orderIcon"></span>
                         </Badge>
                     </Link>
                     <Link to="/account">

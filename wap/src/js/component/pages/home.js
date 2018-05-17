@@ -2,6 +2,7 @@
  * Created by Administrator on 2018/4/13.
  */
 import React,{Component} from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import moment from 'moment';
@@ -29,6 +30,7 @@ class Home extends Component{
             typeIndex: 0,
             detailArr: [], //存放详情参数的数组
             refreshing: false,
+            height: document.documentElement.clientHeight,
         }
     }
     componentWillMount() {
@@ -45,6 +47,15 @@ class Home extends Component{
         this.setState({week: dateArr});
     }
     componentDidMount() {
+        // const hei = this.state.height - ReactDOM.findDOMNode(this.ptr).offsetTop;
+        // console.log(this.state.height)
+        // console.log(ReactDOM.findDOMNode(this.ptr).offsetTop)
+        // console.log(hei)
+        setTimeout(() => this.setState({
+            height: '6.28rem',
+        }), 0);
+
+
         let eventArr = [];
 
         getEventType().then(value => {
@@ -129,6 +140,7 @@ class Home extends Component{
 
                 {/*中间选择区域*/}
                 <div className="whiteBg">
+                    {/*日期选择*/}
                     <div className="week-list-box">
                         <ul className="week-list">
                             {this.state.week.map((val,i) => {
@@ -146,6 +158,7 @@ class Home extends Component{
                             })}
                         </ul>
                     </div>
+                    {/*品类选择*/}
                     <div className="category-list-box">
                         <ul className="category-list">
                             {this.state.category.map((val,i) => {
@@ -161,7 +174,14 @@ class Home extends Component{
                                 )
                             })}
                         </ul>
-                    </div>
+                        {/*底部选择线*/}
+                        <div
+                            className="category-line"
+                            style={{
+                                left: 4 + 25 * this.state.typeIndex + '%'
+                            }}
+                        ></div>
+                </div>
                 </div>
                 {/*获取事件详情*/}
                 <PullToRefresh
@@ -170,12 +190,21 @@ class Home extends Component{
                         maxHeight: '10.88rem',
                         overflow: 'auto'
                     }}
+                    refreshing={this.state.refreshing}
                     direction="down"
                     distanceToRefresh="50"
                     onRefresh={() => {
-                        let fetch =
-                            getEventList(this.state.week, this.state.category, this.state.dayIndex, this.state.typeIndex);
-                        this.props.selectDateType({isRefresh: true,fetchPost: fetch});
+                        this.setState({ refreshing: true });
+
+                        setTimeout(() => {
+                            this.setState({ refreshing: false });
+                        }, 1000);
+
+                        {/*let fetch =*/}
+                            {/*getEventList(this.state.week, this.state.category, this.state.dayIndex, this.state.typeIndex);*/}
+                        {/*this.props.selectDateType({isRefresh: true,fetchPost: fetch}).then(() => {*/}
+                            {/*this.setState({ refreshing: false });*/}
+                        {/*});*/}
                     }}
                     indicator={{
                         activate: 'Release to complete',
