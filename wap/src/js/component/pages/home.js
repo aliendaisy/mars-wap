@@ -30,7 +30,6 @@ class Home extends Component{
             typeIndex: 0,
             detailArr: [], //存放详情参数的数组
             refreshing: false,
-            height: document.documentElement.clientHeight,
         }
     }
     componentWillMount() {
@@ -47,15 +46,6 @@ class Home extends Component{
         this.setState({week: dateArr});
     }
     componentDidMount() {
-        // const hei = this.state.height - ReactDOM.findDOMNode(this.ptr).offsetTop;
-        // console.log(this.state.height)
-        // console.log(ReactDOM.findDOMNode(this.ptr).offsetTop)
-        // console.log(hei)
-        setTimeout(() => this.setState({
-            height: '6.28rem',
-        }), 0);
-
-
         let eventArr = [];
 
         getEventType().then(value => {
@@ -192,19 +182,15 @@ class Home extends Component{
                     }}
                     refreshing={this.state.refreshing}
                     direction="down"
-                    distanceToRefresh="50"
+                    distanceToRefresh={50}
                     onRefresh={() => {
                         this.setState({ refreshing: true });
 
-                        setTimeout(() => {
+                        let fetch =
+                            getEventList(this.state.week, this.state.category, this.state.dayIndex, this.state.typeIndex);
+                        this.props.selectDateType({isRefresh: true,fetchPost: fetch}).then(() => {
                             this.setState({ refreshing: false });
-                        }, 1000);
-
-                        {/*let fetch =*/}
-                            {/*getEventList(this.state.week, this.state.category, this.state.dayIndex, this.state.typeIndex);*/}
-                        {/*this.props.selectDateType({isRefresh: true,fetchPost: fetch}).then(() => {*/}
-                            {/*this.setState({ refreshing: false });*/}
-                        {/*});*/}
+                        });
                     }}
                     indicator={{
                         activate: 'Release to complete',
