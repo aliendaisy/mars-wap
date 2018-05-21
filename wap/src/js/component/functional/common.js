@@ -20,9 +20,11 @@ export function fetchJson(url,params,cb){
         return res.json();
     }).then((json) =>{
         if(json.result === "success" || json.message === "success") {
+            console.log('success')
             return cb(json.data);
         }else{
-            Toast.info(json.message);
+            console.log('fail')
+            Toast.info(json.message, 1.5);
             return cb(json.message);
         }
     }).catch(err => {
@@ -33,10 +35,10 @@ export function fetchJson(url,params,cb){
 //注册
 export function signUp(email, pwd) {
     return new Promise(resolve => {
-        fetchJson('/mobile/owner/register', {email: email, password: pwd, zipCode: ''}, doc => {
+        fetchJson('/mobile/owner/register', {email: email, password: pwd, zipCode: 123}, doc => {
             resolve(doc);
-        })
-    })
+        });
+    });
 }
 
 //登录
@@ -107,6 +109,15 @@ export function thumbUp(commodity_id) {
 export function joinEvent(event_id, commodity_id) {
     return new Promise(resolve => {
         fetchJson('/v1/user/jionEvent', {email: email, event_id: event_id, commodity_id: commodity_id}, doc => {
+            resolve(doc);
+        });
+    });
+}
+
+//获取购物车列表
+export function queryCart() {
+    return new Promise(resolve => {
+        fetchJson('/v1/user/queryCart', {email: email}, doc => {
             resolve(doc);
         });
     });

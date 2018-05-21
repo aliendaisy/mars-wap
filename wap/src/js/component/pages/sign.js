@@ -42,6 +42,7 @@ class Sign extends Component{
                 this.props.Login(fetch).then(() => {
                     //resolve之后返回
                     if(this.props.user) {
+                        Toast.info('Login successfully!', 2);
                         localStorage.setItem('email', email);
                         window.location.href = '/'; //登录后强制刷新返回主页
                     }
@@ -54,15 +55,18 @@ class Sign extends Component{
         }
     }
     //注册
-    signUp() {
+    register() {
         let email = this.refs.email.value;
         let pwd = this.refs.pwd.value;
         if(email && pwd) {
             if(this.emailReg.test(email)) {
                 let fetch = signUp(email, pwd);
+                console.log(fetch)
                 this.props.SignUp(fetch).then(() => {
-                    console.log('11111')
-                    // this.signin();
+                    Toast.info('Register successfully!', 2);
+                    localStorage.setItem('email', email);
+                    console.log(2222)
+                    // window.location.href = '/'; //登录后强制刷新返回主页
                 });
             }else{
                 Toast.info('Please enter the right email address!', 1.5);
@@ -98,7 +102,7 @@ class Sign extends Component{
                     >Sign in</div>
                     <div
                         className={token ? 'commit-btn none' : 'commit-btn'}
-                        onClick={this.signUp.bind(this)}
+                        onClick={this.register.bind(this)}
                     >New Account</div>
                     <p className={token ? 'service none' : 'service'}>
                         <Link to="/term">

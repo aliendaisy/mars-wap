@@ -50,22 +50,37 @@ const Reducer = (state={},action) => {
             break;
         //注册 todo
         case "SIGN_UP":
+            if(action.payload.value.ownerInfo) {
+                let tokenInit = action.payload.value.ownerInfo.token;
 
-            return {...state};
+                output = {
+                    user_name: action.payload.value.ownerInfo.user_name,
+                    signature: 'Something about me.',
+                    avatar: ''
+                };
+
+                localStorage.setItem('user', JSON.stringify(output));
+                localStorage.setItem('token', tokenInit);
+
+                return {...state, user: output};
+            }
+            break;
         //登录验证 todo(authcheck 没有用到)
         case "AUTH_CHECK":
-            console.log(action.payload.value);
+            if(action.payload.value.ownerInfo) {
 
-            let token = action.payload.value.ownerInfo.token;
-            output = {
-                user_name: action.payload.value.ownerInfo.user_name,
-                signature: action.payload.value.ownerInfo.signature,
-                avatar: `${commonPath}${action.payload.value.ownerInfo.header}`
-            };
+                let token = action.payload.value.ownerInfo.token;
+                output = {
+                    user_name: action.payload.value.ownerInfo.user_name,
+                    signature: action.payload.value.ownerInfo.signature,
+                    avatar: `${commonPath}${action.payload.value.ownerInfo.header}`
+                };
 
-            localStorage.setItem('user', JSON.stringify(output));
+                localStorage.setItem('user', JSON.stringify(output));
 
-            return {...state, user: output};
+                return {...state, user: output};
+            }
+            break;
         //获取事件详情信息
         case "GET_EVENT_DETAIL":
 

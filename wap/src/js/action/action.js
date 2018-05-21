@@ -15,25 +15,25 @@ export const selectDateType = ({isRefresh = false,fetchPost}) => async(dispatch,
         }
     });
 };
-//登录接口
-export const Login = (fetchPost) => async(dispatch, getState) => {
+
+//注册接口
+export const SignUp = (fetchPost) => async(dispatch, getState) => {
     let value = await Promise.resolve(fetchPost);
 
     await dispatch({
-        type: 'LOGIN',
+        type: 'SIGN_UP',
         payload: {
             value
         }
     });
 };
 
-//注册接口 todo
-export const SignUp = (fetchPost) => async(dispatch, getState) => {
+//登录接口
+export const Login = (fetchPost) => async(dispatch, getState) => {
     let value = await Promise.resolve(fetchPost);
-    await Promise.reject(fetchPost);
 
     await dispatch({
-        type: 'SIGN_UP',
+        type: 'LOGIN',
         payload: {
             value
         }
@@ -82,6 +82,18 @@ export const JoinEvent = (fetchJson) => async(dispatch, getState) => {
 
     await dispatch({
         type: 'JOIN_EVENT',
+        payload: {
+            value
+        }
+    });
+};
+
+//获取购物车列表
+export const QueryCartList = (fetchJson) => async(dispatch, getState) => {
+    let value = await Promise.resolve(fetchJson);
+
+    await dispatch({
+        type: 'QUERY_CART_LIST',
         payload: {
             value
         }
