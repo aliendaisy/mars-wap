@@ -3,11 +3,7 @@ import React, {Component} from 'react';
 class Loading extends Component{
     render() {
         return(
-            <div style={{
-                width: '100%',
-                height: '5.44rem',
-                position: 'relative'
-            }}>
+            <div style={this.props.style}>
                 <img
                     className="fetchLoading"
                     src={require("../../../images/loading.gif")}

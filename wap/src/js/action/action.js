@@ -90,6 +90,9 @@ export const JoinEvent = (fetchJson) => async(dispatch, getState) => {
 
 //获取购物车列表
 export const QueryCartList = (fetchJson) => async(dispatch, getState) => {
+    await dispatch({
+        type: 'LOADING'
+    });
     let value = await Promise.resolve(fetchJson);
 
     await dispatch({

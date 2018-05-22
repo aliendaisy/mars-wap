@@ -205,7 +205,11 @@ class Home extends Component{
                     {(() => {
                         /*通过loading指针，在接口未请求到数据前显示Loading组件*/
                         if(this.props.loading) {
-                            return <Loading/>;
+                            return <Loading style={{
+                                width: '100%',
+                                height: '5.44rem',
+                                position: 'relative'
+                            }}/>;
                         }else{
                             /*判断goodsList是否存在,对store里的数据进行遍历渲染*/
                             if(this.props.goodsList) {

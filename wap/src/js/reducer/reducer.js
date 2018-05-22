@@ -1,7 +1,10 @@
 import moment from 'moment';
 export const commonPath = "http://www.marstail.com:20000";
 
-const Reducer = (state={},action) => {
+const defaultSignature = 'Something about me.';
+const defaultAvatar = 'Something about me.';
+
+const Reducer = (state={}, action) => {
     let goods = state.goodsList ? state.goodsList : JSON.parse(localStorage.getItem('goodsList'));
     let user = state.user ? state.user : JSON.parse(localStorage.getItem('user'));
     let output = {};
@@ -10,7 +13,7 @@ const Reducer = (state={},action) => {
     switch (action.type) {
         //加载动画
         case "LOADING":
-            return {...state,loading: true};
+            return {...state, loading: true};
         //选择日期与事件
         case "SELECT_DATE_TYPE":
             delete state.loading;
@@ -48,15 +51,15 @@ const Reducer = (state={},action) => {
                 return {...state, user: output};
             }
             break;
-        //注册 todo
+        //注册
         case "SIGN_UP":
             if(action.payload.value.ownerInfo) {
                 let tokenInit = action.payload.value.ownerInfo.token;
 
                 output = {
                     user_name: action.payload.value.ownerInfo.user_name,
-                    signature: 'Something about me.',
-                    avatar: ''
+                    signature: defaultSignature,
+                    avatar: defaultAvatar
                 };
 
                 localStorage.setItem('user', JSON.stringify(output));
@@ -146,14 +149,27 @@ const Reducer = (state={},action) => {
         //更新个人信息
         case "UPDATE_INFO":
 
-            let output = {...user};
-
-            output.user_name = action.payload.value.user_name;
-            output.signature = action.payload.value.signature;
+            output = {...user};
+            if(action.payload.value.user_name) {
+                output.user_name = action.payload.value.user_name;
+            }
+            if(action.payload.value.signature) {
+                output.signature = action.payload.value.signature;
+            }
 
             localStorage.setItem('user', JSON.stringify(output));
 
             return {...state, user: output};
+        case "QUERY_CART_LIST":
+
+            delete state.loading;
+            console.log(action.payload.value)
+            if(action.payload.value.list) {
+                output = action.payload.value.list;
+            }
+
+            return {...state, cartList: output}
+
 
     }
     return state;

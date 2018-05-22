@@ -22,14 +22,11 @@ class Sign extends Component{
     componentWillMount() {
         document.body.style.background = '#fff';
     }
-    componentDidMount() {
-
-    }
     email() {
 
     }
     pwd() {
-        console.log('pwd',this.refs.pwd.value)
+        // console.log('pwd',this.refs.pwd.value)
     }
     //登录
     signin() {
@@ -63,10 +60,11 @@ class Sign extends Component{
                 let fetch = signUp(email, pwd);
                 console.log(fetch)
                 this.props.SignUp(fetch).then(() => {
-                    Toast.info('Register successfully!', 2);
-                    localStorage.setItem('email', email);
-                    console.log(2222)
-                    // window.location.href = '/'; //登录后强制刷新返回主页
+                    if(this.props.user) {
+                        Toast.info('Register successfully!', 2);
+                        localStorage.setItem('email', email);
+                        window.location.href = '/'; //注册成功后强制刷新返回主页
+                    }
                 });
             }else{
                 Toast.info('Please enter the right email address!', 1.5);
@@ -76,8 +74,8 @@ class Sign extends Component{
         }
     }
     render() {
-        // let token = localStorage.getItem('token');
-        let token = null;
+        let token = localStorage.getItem('token');
+        // let token = null;
         return(
             <div className="sign">
                 <p className="rounded">M</p>

@@ -105,10 +105,10 @@ export function thumbUp(commodity_id) {
     });
 }
 
-//加入事件
+//加入事件（加入购物车）
 export function joinEvent(event_id, commodity_id) {
     return new Promise(resolve => {
-        fetchJson('/v1/user/jionEvent', {email: email, event_id: event_id, commodity_id: commodity_id}, doc => {
+        fetchJson('/v1/user/addCart', {email: email, event_id: event_id, commodity_id: commodity_id}, doc => {
             resolve(doc);
         });
     });

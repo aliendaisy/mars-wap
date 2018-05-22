@@ -11,9 +11,39 @@
     height: .84rem;
     line-height: .84rem;
     padding: 0 .3rem;
-    border-bottom: .02rem solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
     box-sizing: border-box;
     font-size: .48rem;
     font-weight: bold;
+  }
+  .vendor-box{
+    margin-left: .3rem;
+    padding: .1rem .3rem .1rem 0;
+    border-bottom: 1px solid #ebebeb;
+    .vendor{
+      font-size: .44rem;
+      line-height: .8rem;
+      font-weight: bold;
+    }
+    .orderGoods{
+      font-size: .36rem;
+      color: #878787;
+      div{
+        line-height: .6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  .address-box{
+    @extend .vendor-box;
+    font-size: .28rem;
+    color: #878787;
+    div{
+      line-height: .5rem;
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
