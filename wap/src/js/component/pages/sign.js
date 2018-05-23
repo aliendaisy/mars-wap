@@ -45,7 +45,7 @@ class Sign extends Component{
                     }
                 });
             }else{
-                Toast.info('Please enter the right email address!', 1.5);
+                Toast.info('Please enter a valid email!', 1.5);
             }
         }else{
             Toast.info('Please enter your information.', 1.5);
@@ -67,7 +67,7 @@ class Sign extends Component{
                     }
                 });
             }else{
-                Toast.info('Please enter the right email address!', 1.5);
+                Toast.info('Please enter a valid email!', 1.5);
             }
         }else{
             Toast.info('Please enter your information.', 1.5);

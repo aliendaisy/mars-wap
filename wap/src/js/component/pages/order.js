@@ -77,7 +77,7 @@ class Order extends Component{
                                             <div className="address-box">
                                                 <div>
                                                     <p>12:00 @ 123 Street and 456 Ave, BJ后面</p>
-                                                    <p className="circle"></p>
+                                                    <p className="circle circle-active"></p>
                                                 </div>
                                                 <div>
                                                     <p>12:00 @ 123 Street and 456 Ave, BJ后面</p>
@@ -107,7 +107,7 @@ class Order extends Component{
                                             <div className="address-box">
                                                 <div>
                                                     <p>12:00 @ 123 Street and 456 Ave, BJ后面</p>
-                                                    <p className="circle"></p>
+                                                    <p className="circle circle-active"></p>
                                                 </div>
                                                 <div>
                                                     <p>12:00 @ 123 Street and 456 Ave, BJ后面</p>
@@ -118,6 +118,8 @@ class Order extends Component{
                                                     <p className="circle"></p>
                                                 </div>
                                             </div>
+
+                                            <div className="placeOrder">Place Order</div>
                                         </div>
                                     ))
                                 );
