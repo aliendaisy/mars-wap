@@ -1,5 +1,5 @@
 /**
- * Created by yulingjie on 18/03/23.
+ * Created by yulingjie on 17/10/11.
  */
 const webpack = require('webpack');
 const path = require('path');
@@ -23,7 +23,7 @@ module.exports = {
         contentBase: "./public", //本地服务器所加载的页面所在的目录
         historyApiFallback: true, //不跳转
         inline: true, //实时刷新
-        //hot: true
+        // hot: true
     },
 
     module: {
@@ -35,23 +35,10 @@ module.exports = {
                     loader: "babel-loader",
                     options: {
                         presets: [
-                            "es2015","react"
+                            "react","es2015"
                         ],
-                        //热加载配置
-                        //env: {
-                        //	development: {
-                        //		plugins: [
-                        //			["react-transform", {
-                        //				transforms: [{
-                        //					transform: "react-transform-hmr",
-                        //					imports: ["react"],
-                        //					locals: ["module"]
-                        //				}]
-                        //			}]
-                        //		]
-                        //	}
-                        //}
-                    }
+                        plugins: ["transform-object-rest-spread"]
+                    },
                 },
                 exclude: /node_modules/
             },{
@@ -66,31 +53,23 @@ module.exports = {
                 ]
             },{
                 //图片字体解析
-                test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
+                test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
                 use: {
-                    loader: 'url-loader?name=[name].[ext]'
+                    loader: 'url-loader?limit=8192&name=[name]-[hash].[ext]'
                 }
-            }
-        ]
+            },
+        ],
     },
     plugins: [
         new BundleAnalyzerPlugin(),
-        // new webpack.HotModuleReplacementPlugin(), //热加载插件
-        new webpack.optimize.UglifyJsPlugin({
-            output: {
-                comments: false,
-            },
-            compress: {
-                warnings: false
-            }
-        }),
-        ["import", { libraryName: "antd-mobile", style: "css" }] // `style: true` 会加载 less 文件
-
-        //new webpack.optimize.CommonsChunkPlugin({
-        //	name: 'vendor',
-        //	filename: 'common.js',
-        //	minChunks: Infinity,
-        //}),
+        //new webpack.HotModuleReplacementPlugin(), //热加载插件
+        // new webpack.optimize.UglifyJsPlugin({
+        //     output: {
+        //         comments: false,
+        //     },
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
     ]
 };
-

@@ -75,9 +75,10 @@ export function getEventType() {
 export function getEventList(week,event,weekIndex,eventIndex) {
     let year = new Date().getFullYear();
     let month = parseInt(week[weekIndex].date.split('.')[0]) - 1;
-    let day = parseInt(week[weekIndex].date.split('.')[1]);
+    let day = parseInt(week[weekIndex].date.split('.')[1]) + 1; //plus one because of time difference
 
     let date = new Date(year,month,day);
+
     let event_type = event[eventIndex].title; //事件类型
 
     return new Promise(resolve => {
@@ -108,13 +109,13 @@ export function thumbUp(commodity_id) {
 //加入事件（加入购物车）
 export function joinEvent(event_id, commodity_id) {
     return new Promise(resolve => {
-        fetchJson('/v1/user/addCart', {email: email, event_id: event_id, commodity_id: commodity_id}, doc => {
+        fetchJson('/v1/user/jionEvent', {email: email, event_id: event_id, commodity_id: commodity_id}, doc => {
             resolve(doc);
         });
     });
 }
 
-//获取购物车列表
+//获取购物车列表(todo(useless))
 export function queryCart() {
     return new Promise(resolve => {
         fetchJson('/v1/user/queryCart', {email: email}, doc => {

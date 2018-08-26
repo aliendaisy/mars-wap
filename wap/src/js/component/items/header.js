@@ -17,11 +17,11 @@ class Header extends Component{
                     <Link to="/download">
                         <p className="download">Download or Open in App</p>
                     </Link>
-                    <Link to="/order">
-                        <Badge text={this.props.badge}>
-                            <span className="iconfont icon-order orderIcon"></span>
-                        </Badge>
-                    </Link>
+                    {/*<Link to="/order">*/}
+                        {/*<Badge text={this.props.badge}>*/}
+                            {/*<span className="iconfont icon-order orderIcon"></span>*/}
+                        {/*</Badge>*/}
+                    {/*</Link>*/}
                     <Link to="/account">
                         <span className="iconfont icon-user"></span>
                     </Link>

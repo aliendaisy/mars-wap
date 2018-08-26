@@ -4,7 +4,7 @@ class Download extends Component{
     componentWillMount() {
         document.body.style.background = '#fff';
     }
-    //下载app或打开app
+    //download app
     handleClick() {
         let applink = (success,fail) => {
             let clickedAt = +new Date;
@@ -21,7 +21,7 @@ class Download extends Component{
         };
         var appstore,appUrl;
         let ua = navigator.userAgent;
-        //安卓
+        //for android
         // if(ua.match(/android/i)){
         //     if(ua.toLowerCase().indexOf("micromessenger") > -1) {
         //         appstore = '';

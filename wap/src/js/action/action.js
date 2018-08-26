@@ -88,7 +88,7 @@ export const JoinEvent = (fetchJson) => async(dispatch, getState) => {
     });
 };
 
-//获取购物车列表
+//获取购物车列表(todo(useless))
 export const QueryCartList = (fetchJson) => async(dispatch, getState) => {
     await dispatch({
         type: 'LOADING'

@@ -170,7 +170,8 @@ class Home extends Component{
                             style={{
                                 left: 4 + 25 * this.state.typeIndex + '%'
                             }}
-                        ></div>
+                        >
+                        </div>
                 </div>
                 </div>
                 {/*获取事件详情*/}

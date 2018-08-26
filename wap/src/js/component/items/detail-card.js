@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
+import {Redirect} from 'react-router-dom';
 
 import NumChange from '../functional/numChange';
 
@@ -38,6 +39,9 @@ class DetailCard extends Component{
             this.setState({isInterest: !this.state.isInterest});
         });
     }
+    share() {
+        this.context.router.history.push('/download');
+    }
     eventToggle(ei, ci) {
         //当未加入事件时请求接口，否则不作处理
         if(!this.state.isJoin) {
@@ -66,8 +70,7 @@ class DetailCard extends Component{
                                 onClick={this.interestToggle.bind(this, commodityId)}>
                             </span>
                             <p className="heart">{heartNum}</p>
-                            <span className="iconfont icon-share">
-                            </span>
+                            <span className="iconfont icon-share" onClick={this.share.bind(this)}></span>
                         </div>
                     </div>
                     <div className="bottom">
